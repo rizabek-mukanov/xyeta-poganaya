@@ -1,0 +1,46 @@
+<nb-card>
+  <nb-card-header class="d-flex justify-content-between">
+    Получатели
+    <button nbButton ghost [routerLink]="'/admin/report-settings/' + id">
+      <nb-icon icon="close-outline"></nb-icon>
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-6">
+        <h3>Категории получателей</h3>
+        <div class="overflow-auto">
+          <nb-list>
+            <nb-list-item *ngFor="let recipient of recipients">
+              <button nbButton class="mr-2">
+                <nb-icon icon="info-outline" (click)="goToInfo(recipient)"></nb-icon>
+              </button>
+              <button nbButton (click)="addToChosen(recipient)" ghost class="w-100">
+                {{ recipient?.name }}
+              </button>
+            </nb-list-item>
+          </nb-list>
+          <button class="mt-3" nbButton (click)="addNewCategory()">Добавить категорию</button>
+        </div>
+      </div>
+      <div class="col-6">
+        <h3>Категории получателей</h3>
+        <nb-list>
+          <nb-list-item *ngFor="let chosenRecipient of chosenRecipients">
+            <button nbButton class="mr-2">
+              <nb-icon icon="info-outline" (click)="goToInfo(chosenRecipient)"></nb-icon>
+            </button>
+            <button nbButton class="w-100" ghost>
+              {{ chosenRecipient?.name }}
+            </button>
+            <button nbButton (click)="deleteChosen(chosenRecipient)"><nb-icon icon="trash-outline"></nb-icon></button>
+          </nb-list-item>
+        </nb-list>
+      </div>
+      </div>
+  </nb-card-body>
+  <nb-card-footer class="d-flex justify-content-center">
+    <button nbButton (click)="saveAndReturn()" class="mr-5" status="primary">Применить</button>
+    <button nbButton [routerLink]="'/admin/report-settings/' + id">Отменить</button>
+  </nb-card-footer>
+</nb-card>

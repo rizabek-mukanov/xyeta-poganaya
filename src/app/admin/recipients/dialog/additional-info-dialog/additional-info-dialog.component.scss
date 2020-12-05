@@ -1,0 +1,25 @@
+.addition-info-header {
+  background-color: #02344f;
+}
+
+table {
+  width: 100%;
+
+  & td {
+    color: black;
+  }
+
+  & th {
+    color: black;
+  }
+}
+.category-card-header {
+  background-color: #e8f2fe;
+  color: #02344f;
+}
+.category-card-body{
+  padding: 0 !important;
+}
+[nbInput] {
+  color: black !important;
+}

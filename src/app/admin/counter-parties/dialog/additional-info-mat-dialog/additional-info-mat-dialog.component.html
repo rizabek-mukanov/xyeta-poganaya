@@ -1,0 +1,73 @@
+<nb-card class="bg-white">
+	<nb-card-header class="addition-info-header d-flex justify-content-between">
+		Дополнительные сведения
+		<button (click)="closeDialog()" ghost nbButton>
+			<nb-icon icon="close-outline"></nb-icon>
+		</button>
+	</nb-card-header>
+	<nb-card-body>
+    <div class="d-flex justify-content-center mb-5">
+      <div class="d-flex w-50">
+        <input class="bg-white" fullWidth nbInput placeholder="Поиск">
+        <button nbButton>
+          <nb-icon icon="search-outline"></nb-icon>
+        </button>
+      </div>
+    </div>
+<!--		<div class="d-flex justify-content-center mb-5">-->
+<!--			<div class="row w-50">-->
+<!--				<input class="bg-white" style="width: 100%" nbInput placeholder="Поиск">-->
+<!--				<button nbButton>-->
+<!--					<nb-icon icon="search-outline"></nb-icon>-->
+<!--				</button>-->
+<!--			</div>-->
+<!--		</div>-->
+		<nb-card class="bg-white border-0">
+			<nb-card-header class="category-card-header">
+				Категория 4
+			</nb-card-header>
+			<nb-card-body class="category-card-body">
+				<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+					<ng-container matColumnDef="id">
+						<th mat-header-cell *matHeaderCellDef>Дата и время публикации</th>
+						<td mat-cell
+						    *matCellDef="let category">{{category.id}}</td>
+					</ng-container>
+					<ng-container matColumnDef="name">
+						<th mat-header-cell *matHeaderCellDef>Дата и время публикации</th>
+						<td mat-cell
+						    *matCellDef="let category">{{category.name}}</td>
+					</ng-container>
+					<ng-container matColumnDef="bin">
+						<th mat-header-cell *matHeaderCellDef>Дата и время публикации</th>
+						<td mat-cell
+						    *matCellDef="let category">{{category.bin}}</td>
+					</ng-container>
+					<ng-container matColumnDef="email">
+						<th mat-header-cell *matHeaderCellDef>Дата и время публикации</th>
+						<td mat-cell
+						    *matCellDef="let category">{{category.email}}</td>
+					</ng-container>
+					<ng-container matColumnDef="phone">
+						<th mat-header-cell *matHeaderCellDef>Дата и время публикации</th>
+						<td mat-cell
+						    *matCellDef="let category">{{category.phone}}</td>
+					</ng-container>
+					<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+					<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+				</table>
+			</nb-card-body>
+		</nb-card>
+
+		<nb-card class="bg-white border-0">
+			<nb-card-header class="category-card-header">
+				Категория 5
+			</nb-card-header>
+			<nb-card-body class="category-card-body">
+
+			</nb-card-body>
+		</nb-card>
+
+
+	</nb-card-body>
+</nb-card>

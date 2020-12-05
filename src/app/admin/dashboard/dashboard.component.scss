@@ -1,0 +1,45 @@
+table {
+  width: 100%;
+  //background-color: #222b45;
+  background: #222b45;
+
+  & td {
+    color: #ffffff;
+  }
+
+  & th {
+    color: #ffffff;
+  }
+}
+
+.table-image {
+  width: 100%;
+  max-width: 120px;
+  padding: 15px;
+}
+
+
+.report-row {
+
+}
+
+.report-row:hover {
+  background-color: #374066;
+  cursor: pointer;
+}
+
+//.mat-dialog-container, nb-dialog-container {
+//  background: nb-theme(background-basic-color-1);
+//  & .mat-table {
+//    background-color: nb-theme(background-basic-color-1);
+//    & .mat-header-cell, & .mat-cell {
+//      color: nb-theme(text-basic-color);
+//    }
+//  }
+//  .table {
+//    background: nb-theme(background-basic-color-1);
+//    & td {
+//      color: nb-theme(text-basic-color);
+//    }
+//  }
+//}

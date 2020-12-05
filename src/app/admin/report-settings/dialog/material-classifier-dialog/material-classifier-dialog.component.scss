@@ -1,0 +1,37 @@
+.addition-info-header {
+  background-color: #02344f;
+}
+table {
+  width: 100%;
+
+  & td {
+    color: black;
+  }
+
+  & th {
+    color: black;
+  }
+}
+nb-card {
+  color: #17151C !important;
+  height: 100%;
+}
+.category-card-header {
+  background-color: #e8f2fe;
+  color: #02344f;
+}
+nb-select {
+  background-color: red !important;
+}
+.category-card-body{
+  padding: 0 !important;
+}
+[nbInput] {
+  color: black !important;
+}
+.border-right-custom {
+  border-right: 1px solid #2179db !important;
+}
+.border-left-custom {
+  border-left: 1px solid #2179db !important;
+}

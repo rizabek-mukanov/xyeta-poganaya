@@ -1,0 +1,34 @@
+.table-image {
+  width: 100%;
+  max-width: 120px;
+  padding: 15px;
+}
+
+table {
+  width: 100%;
+  //background-color: #222b45;
+  background: #222b45;
+
+  & td {
+    color: #ffffff;
+  }
+
+  td.row-success {
+    color: #217AD8;
+  }
+
+  td.row-waiting {
+    color: #DBA721;
+  }
+
+  & th {
+    color: #ffffff;
+  }
+
+}
+
+a.watch-list {
+  color: #217AD8;
+  text-decoration: underline;
+  cursor: pointer;
+}

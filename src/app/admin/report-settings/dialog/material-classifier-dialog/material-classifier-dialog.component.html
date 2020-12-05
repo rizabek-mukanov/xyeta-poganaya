@@ -1,0 +1,72 @@
+<nb-card class="bg-white">
+  <nb-card-header class="addition-info-header d-flex justify-content-between">
+    Классификатор материалов
+    <button (click)="closeDialog()" ghost nbButton>
+      <nb-icon icon="close-outline"></nb-icon>
+    </button>
+  </nb-card-header>
+  <nb-card-body class="classifier-card-body">
+    <div class="row">
+      <div class="col-2">
+        <nb-select fullWidth placeholder="Отдел">
+          <nb-option>Выберите отдел</nb-option>
+          <nb-option *ngFor="let department of departments">{{department?.name}}</nb-option>
+          <!--      <nb-option [value]="null">Clean with null value</nb-option>-->
+        </nb-select>
+      </div>
+      <div class="col-2">
+        <mat-form-field appearance="fill">
+          <mat-label>Раздел</mat-label>
+          <!--          <mat-select [(ngModel)]="selectedValue" name="food">-->
+          <mat-select name="departament">
+            <mat-option *ngFor="let departament of departments" [value]="departament.name">
+              {{departament.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-2">
+        <nb-select fullWidth placeholder="Подраздел">
+          <nb-option>Выберите подраздел</nb-option>
+          <nb-option *ngFor="let department of departments">{{department?.name}}</nb-option>
+          <!--      <nb-option [value]="null">Clean with null value</nb-option>-->
+        </nb-select>
+      </div>
+      <div class="col-2">
+        <nb-select fullWidth placeholder="Группа">
+          <nb-option>Выберите группу</nb-option>
+          <nb-option *ngFor="let department of departments">{{department?.name}}</nb-option>
+          <!--      <nb-option [value]="null">Clean with null value</nb-option>-->
+        </nb-select>
+      </div>
+      <div class="col-2">
+        <nb-select fullWidth placeholder="Подгруппа">
+          <nb-option>Выберите подгруппу</nb-option>
+          <nb-option *ngFor="let department of departments">{{department?.name}}</nb-option>
+          <!--      <nb-option [value]="null">Clean with null value</nb-option>-->
+        </nb-select>
+      </div>
+      <div class="col-2">
+        <button (click)="openMaterialsDialog()" style="width: 190px" nbButton status="primary" class="d-flex justify-content-between">
+          <div>Материалы</div>
+          <div>10</div>
+        </button>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="row">
+      <div class="col-2 border-right-custom">
+        <div class="mb-2">Выбранные материалы</div>
+        <button (click)="clearFilter()" nbButton outline status="primary">
+          Очистить фильтр
+        </button>
+      </div>
+      <div class="col-8"></div>
+      <div class="col-2 border-left-custom">
+        <button class="mb-2" nbButton status="primary">Применить</button>
+        <button nbButton outline status="primary" (click)="closeDialog()">Отменить</button>
+      </div>
+    </div>
+  </nb-card-footer>
+</nb-card>

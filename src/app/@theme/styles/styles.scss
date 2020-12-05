@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+
+// themes - our custom or/and out of the box themes
+@import 'themes';
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/all';
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
+
+// loading progress bar theme
+@import './pace.theme';
+
+@import './layout';
+@import './overrides';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  @include nb-overrides();
+};
+.additional-info-modal {
+  width: 2000px;
+}
+//.mat-dialog-container, nb-dialog-container {
+//  background: nb-theme(background-basic-color-1);
+//  //& .mat-table {
+//  //  background-color: nb-theme(background-basic-color-1);
+//  //  & .mat-header-cell, & .mat-cell {
+//  //    color: nb-theme(text-basic-color);
+//  //  }
+//  //}
+//  //.table {
+//  //  background: nb-theme(background-basic-color-1);
+//  //  & td {
+//  //    color: nb-theme(text-basic-color);
+//  //  }
+//  //}
+//}
+@media (max-width:  532px) {
+  .report-settings-modal {
+    max-width: 100% !important;
+  }
+}
+.report-settings-modal {
+  width: 1500px;
+}
+nb-dialog-container{
+  width: 100%;
+}
+table {
+  width: 100%;
+}

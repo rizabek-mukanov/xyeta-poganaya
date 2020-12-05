@@ -1,0 +1,12 @@
+<nb-card class="bg-white">
+  <nb-card-header class="addition-info-header d-flex justify-content-between">
+    Создание новой категории сведения
+    <button (click)="closeDialog()" ghost nbButton>
+      <nb-icon icon="close-outline"></nb-icon>
+    </button>
+  </nb-card-header>
+  <nb-card-footer class="d-flex justify-content-center">
+    <button nbButton class="mr-3" (click)="saveCategory()" status="primary">Сохранить</button>
+    <button nbButton (click)="closeDialog()">Отменить</button>
+  </nb-card-footer>
+</nb-card>

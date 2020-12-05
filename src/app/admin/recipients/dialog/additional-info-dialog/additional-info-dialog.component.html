@@ -1,0 +1,87 @@
+<nb-card class="bg-white">
+  <nb-card-header class="addition-info-header d-flex justify-content-between">
+    Дополнительные сведения
+    <button (click)="closeDialog()" ghost nbButton>
+      <nb-icon icon="close-outline"></nb-icon>
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="d-flex justify-content-center mb-5">
+      <div class="d-flex w-50">
+        <input class="bg-white" fullWidth nbInput placeholder="Поиск">
+        <button nbButton>
+          <nb-icon icon="search-outline"></nb-icon>
+        </button>
+      </div>
+    </div>
+    <!--		<div class="d-flex justify-content-center mb-5">-->
+    <!--			<div class="row w-50">-->
+    <!--				<input class="bg-white" style="width: 100%" nbInput placeholder="Поиск">-->
+    <!--				<button nbButton>-->
+    <!--					<nb-icon icon="search-outline"></nb-icon>-->
+    <!--				</button>-->
+    <!--			</div>-->
+    <!--		</div>-->
+    <nb-card class="bg-white border-0">
+      <nb-card-header class="category-card-header d-flex justify-content-between">
+        <div>
+          Категория 4
+        </div>
+        <div>
+          Редактировать
+          <button nbButton (click)="deleteCategory()" status="danger">Удалить категорию</button>
+        </div>
+      </nb-card-header>
+      <nb-card-body class="category-card-body">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Дата и время публикации</th>
+            <td mat-cell
+                *matCellDef="let recipient">{{recipient.id}}</td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Дата и время публикации</th>
+            <td mat-cell
+                *matCellDef="let recipient">{{recipient.name}}</td>
+          </ng-container>
+          <ng-container matColumnDef="bin">
+            <th mat-header-cell *matHeaderCellDef>Дата и время публикации</th>
+            <td mat-cell
+                *matCellDef="let recipient">{{recipient.bin}}</td>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Дата и время публикации</th>
+            <td mat-cell
+                *matCellDef="let recipient">{{recipient.email}}</td>
+          </ng-container>
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>Дата и время публикации</th>
+            <td mat-cell
+                *matCellDef="let recipient">{{recipient.phone}}</td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell
+                *matCellDef="let recipient">
+              <button (click)="editRecipient(recipient)" nbButton ghost status="primary">
+                <nb-icon icon="edit"></nb-icon>
+              </button>
+              <button (click)="deleteRecipient(recipient)" nbButton ghost status="danger">
+                <nb-icon icon="close"></nb-icon>
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </nb-card-body>
+    </nb-card>
+
+
+
+  </nb-card-body>
+  <nb-card-footer class="d-flex justify-content-center">
+    <button nbButton class="mr-3" (click)="addNewRecipient()" status="primary">Добавить</button>
+    <button nbButton (click)="closeDialog()">Отменить</button>
+  </nb-card-footer>
+</nb-card>
