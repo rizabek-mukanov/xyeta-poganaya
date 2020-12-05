@@ -6,18 +6,18 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root',
 })
 export class ReportService {
-  fullUrl = environment.apiUrl + '/api/reports/';
+  fullUrl = environment.apiUrl + '/api/reports';
 
   constructor(private http: HttpClient) {
   }
 
   public getAll() {
     console.log('asd');
-    return this.http.get<any>(this.fullUrl + 'findAll/V2');
+    return this.http.get<any>(this.fullUrl + '/findAll/V2');
   }
 
   public getById(id: any) {
-    return this.http.get<any>(this.fullUrl + 'findId', {
+    return this.http.get<any>(this.fullUrl + '/findId', {
       params: {
         id,
       },
