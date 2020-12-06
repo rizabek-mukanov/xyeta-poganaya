@@ -20,4 +20,12 @@ export class CategoryService {
       },
     });
   }
+
+  public getByReportId(id: any) {
+    return this.http.get<any>(this.fullUrl + '/report', {
+      params: {
+        id,
+      },
+    });
+  }
 }

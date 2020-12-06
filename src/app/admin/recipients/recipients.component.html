@@ -11,12 +11,12 @@
         <h3>Категории получателей</h3>
         <div class="overflow-auto">
           <nb-list>
-            <nb-list-item *ngFor="let recipient of recipients">
+            <nb-list-item *ngFor="let i = index; let category of categories">
               <button nbButton class="mr-2">
-                <nb-icon icon="info-outline" (click)="goToInfo(recipient)"></nb-icon>
+                <nb-icon icon="info-outline" (click)="goToInfo(category)"></nb-icon>
               </button>
-              <button nbButton (click)="addToChosen(recipient)" ghost class="w-100">
-                {{ recipient?.name }}
+              <button nbButton (click)="addToChosen(category, i)" ghost class="w-100">
+                {{ category?.categoryName }}
               </button>
             </nb-list-item>
           </nb-list>
@@ -24,16 +24,16 @@
         </div>
       </div>
       <div class="col-6">
-        <h3>Категории получателей</h3>
+        <h3>Выбранные категории : {{chosenCategories.length}}</h3>
         <nb-list>
-          <nb-list-item *ngFor="let chosenRecipient of chosenRecipients">
+          <nb-list-item *ngFor="let i = index; let chosenCategories of chosenCategories">
             <button nbButton class="mr-2">
-              <nb-icon icon="info-outline" (click)="goToInfo(chosenRecipient)"></nb-icon>
+              <nb-icon icon="info-outline" (click)="goToInfo(chosenCategories)"></nb-icon>
             </button>
             <button nbButton class="w-100" ghost>
-              {{ chosenRecipient?.name }}
+              {{ chosenCategories?.categoryName }}
             </button>
-            <button nbButton (click)="deleteChosen(chosenRecipient)"><nb-icon icon="trash-outline"></nb-icon></button>
+            <button nbButton (click)="deleteChosen(chosenCategories, i)"><nb-icon icon="trash-outline"></nb-icon></button>
           </nb-list-item>
         </nb-list>
       </div>

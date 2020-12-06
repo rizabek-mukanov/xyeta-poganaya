@@ -23,6 +23,7 @@ export class ReportSettingsComponent implements OnInit {
   page: 1;
   pdfPagesList: any = [];
   isLoading = false;
+  expirationTime: any;
 
 
   // daysList: any = [
@@ -45,6 +46,7 @@ export class ReportSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.readyTimeList();
     this.getReportInfo(true);
+    this.getExpirationTime();
   }
 
   readyTimeList() {
@@ -66,6 +68,14 @@ export class ReportSettingsComponent implements OnInit {
       }
       this.minutesList.push(minute);
     }
+  }
+
+  getExpirationTime() {
+    this.reportService.getExpirationTime(this.id).subscribe(data => {
+      this.expirationTime = data;
+    }, error => {
+      console.error(error);
+    });
   }
 
 
@@ -93,13 +103,13 @@ export class ReportSettingsComponent implements OnInit {
 
   changed() {
     this.isLoading = true;
-    this.reportService.updateReport(this.report).toPromise().then( response => {
+    this.reportService.updateReport(this.report).toPromise().then(response => {
       console.log(response);
       this.isLoading = false;
-    }).catch( error => {
+    }).catch(error => {
       this.getReportInfo(false);
       this.isLoading = false;
-    }).finally( () => this.isLoading = false);
+    }).finally(() => this.isLoading = false);
   }
 
   openMatClassifier(report: any) {
@@ -131,7 +141,7 @@ export class ReportSettingsComponent implements OnInit {
     }).catch(error => {
       this.getReportInfo(true);
       this.isLoading = false;
-    }).finally( () => this.isLoading = false);
+    }).finally(() => this.isLoading = false);
     ref.close();
   }
 
