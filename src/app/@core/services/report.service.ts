@@ -12,7 +12,6 @@ export class ReportService {
   }
 
   public getAll() {
-    console.log('asd');
     return this.http.get<any>(this.fullUrl + '/findAll/V2');
   }
 

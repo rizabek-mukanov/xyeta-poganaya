@@ -12,6 +12,7 @@ import {AddInfoDialogComponent} from '../add-info-dialog/add-info-dialog.compone
 export class AdditionalInfoDialogComponent implements OnInit {
   dataSource: any;
   displayedColumns: string[] = ['id', 'name', 'bin', 'email', 'phone', 'actions'];
+
   constructor(public dialogRef: MatDialogRef<AdditionalInfoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               public matDialog: MatDialog) {
@@ -29,6 +30,7 @@ export class AdditionalInfoDialogComponent implements OnInit {
     ];
     console.log(this.data);
   }
+
   closeDialog() {
     this.dialogRef.close('SALAM');
   }
@@ -42,6 +44,7 @@ export class AdditionalInfoDialogComponent implements OnInit {
     const deleteDialog = this.matDialog.open(DeleteInfoDialogComponent, {
       data: recipient,
       width: '300',
+      panelClass: 'delete-recipient-dialog',
     });
     deleteDialog.afterClosed().subscribe(result => {
       console.log(result);

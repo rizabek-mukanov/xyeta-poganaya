@@ -41,7 +41,7 @@ export class ReportSettingsComponent implements OnInit {
   }
 
   readyTimeList() {
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 24; i++) {
       let hour;
       if (i.toString().length < 2) {
         hour = `0${i}`;
@@ -50,7 +50,7 @@ export class ReportSettingsComponent implements OnInit {
       }
       this.hoursList.push(hour);
     }
-    for (let i = 0; i < 61; i++) {
+    for (let i = 0; i < 60; i++) {
       let minute;
       if (i.toString().length < 2) {
         minute = `0${i}`;
@@ -66,7 +66,6 @@ export class ReportSettingsComponent implements OnInit {
     this.reportService.getById(this.id).subscribe(async data => {
       console.log(data);
       this.report = data;
-      // await this.readyDaysList();
       this.pageLoaded = true;
       await this.divideTime();
     }, error => {
@@ -103,15 +102,16 @@ export class ReportSettingsComponent implements OnInit {
     this.reportMinutes = hour[1];
   }
 
-  changeGenerateDays() {
+  changeGenerateDays(ref: any) {
     if (this.report) {
       this.report.timeOfPublication = `${this.reportHours}:${this.reportMinutes}`;
     }
     console.log(this.report);
+    ref.close();
   }
 
-  cancelTime() {
-    this.report = this.getReportInfo();
-    console.log(this.report);
+  cancelTime(ref: any) {
+    this.getReportInfo();
+    ref.close();
   }
 }

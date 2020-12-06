@@ -7,31 +7,52 @@
       <button nbButton status="success" [routerLink]="'/admin'">Назад</button>
     </div>
     <hr>
-    <div class="d-flex justify-content-between">
-      <div class="row w-100">
-        <div class="col-4">
-          Дата недели <br><br>
-          <button nbButton size="small" (click)="choseDates(dateDialog)">Выбрать день недели</button>
-        </div>
-        <div class="col-4">
-          <div class="mb-3">Автоотправка</div>
-          <nb-toggle (change)="changed(report)" [(ngModel)]="report.autoSending" status="primary"></nb-toggle>
-        </div>
-        <div class="col-4">Отправится через</div>
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        Дата недели <br><br>
+        <button nbButton size="small" (click)="choseDates(dateDialog)">Выбрать день недели</button>
       </div>
-      <div class="row w-100 align-items-center">
-        <div class="col-4">
-          <button class="header-buttons" (click)="openMatClassifier(report)" nbButton>Фильтр по материалам</button>
+      <div>
+        <div class="mb-3">Автоотправка</div>
+        <nb-toggle (change)="changed(report)" [(ngModel)]="report.autoSending" status="primary"></nb-toggle>
+      </div>
+      <div>
+        Отчет отправится через 8 часов
+        <br>
+        <div class="d-flex justify-content-between">
+          <div>
+            <button nbButton>0</button>
+            <br>
+            Дней
+          </div>
+          <div>
+            <button nbButton>07</button>
+            <br>
+            Часов
+          </div>
+          <div>
+            <button nbButton>49</button>
+            <br>
+            Минут
+          </div>
+          <div>
+            <button nbButton>00</button>
+            <br>
+            Секунд
+          </div>
         </div>
-        <div class="col-3">
-          <button class="header-buttons" [routerLink]="'/admin/recipients/' + report.id" nbButton>Получатели</button>
-        </div>
-        <div class="col-5">
-          <button class="header-buttons" *ngIf="report.isSending" nbButton status='danger'>Остановить публикацию
-          </button>
-          <button class="header-buttons" *ngIf="!report.isSending" nbButton status="primary">Восстановить публикацию
-          </button>
-        </div>
+      </div>
+      <div>
+        <button class="header-buttons" (click)="openMatClassifier(report)" nbButton>Фильтр по материалам</button>
+      </div>
+      <div>
+        <button class="header-buttons" [routerLink]="'/admin/recipients/' + report.id" nbButton>Получатели</button>
+      </div>
+      <div>
+        <button class="header-buttons" *ngIf="report.isSending" nbButton status='danger'>Остановить публикацию
+        </button>
+        <button class="header-buttons" *ngIf="!report.isSending" nbButton status="primary">Восстановить публикацию
+        </button>
       </div>
 
     </div>
@@ -50,7 +71,7 @@
     <nb-card-body>
       <div class="d-flex justify-content-end">
         <button nbButton ghost>
-          <nb-icon (click)="ref.close()" icon="close-outline"></nb-icon>
+          <nb-icon (click)="cancelTime(ref)" icon="close-outline"></nb-icon>
         </button>
       </div>
       <div class="row justify-content-between">
@@ -62,29 +83,35 @@
           <nb-option *ngFor="let minute of minutesList" value="{{minute}}">{{minute}}</nb-option>
         </nb-select>
 
-        <button *ngIf="report.generateInMonday" (click)="report.generateInMonday = false" mat-raised-button>ПН</button>
-        <button *ngIf="!report.generateInMonday" (click)="report.generateInMonday = true" mat-button>ПН</button>
-        <button *ngIf="report.generateInTuesday" (click)="report.generateInTuesday = false" mat-raised-button>ВТ
+        <button *ngIf="report.generateInMonday" (click)="report.generateInMonday = false" nbButton status="primary">ПН
         </button>
-        <button *ngIf="!report.generateInTuesday" (click)="report.generateInTuesday = true" mat-button>ВТ</button>
-        <button *ngIf="report.generateInWednesday" (click)="report.generateInWednesday = false" mat-raised-button>СР
+        <button *ngIf="!report.generateInMonday" (click)="report.generateInMonday = true" nbButton>ПН</button>
+        <button *ngIf="report.generateInTuesday" (click)="report.generateInTuesday = false" nbButton status="primary">ВТ
         </button>
-        <button *ngIf="!report.generateInWednesday" (click)="report.generateInWednesday = true" mat-button>СР</button>
-        <button *ngIf="report.generateInThursday" (click)="report.generateInThursday = false" mat-raised-button>ЧТ
+        <button *ngIf="!report.generateInTuesday" (click)="report.generateInTuesday = true" nbButton>ВТ</button>
+        <button *ngIf="report.generateInWednesday" (click)="report.generateInWednesday = false" nbButton
+                status="primary">СР
         </button>
-        <button *ngIf="!report.generateInThursday" (click)="report.generateInThursday = true" mat-button>ЧТ</button>
-        <button *ngIf="report.generateInFriday" (click)="report.generateInFriday = false" mat-raised-button>ПТ</button>
-        <button *ngIf="!report.generateInFriday" (click)="report.generateInFriday = true" mat-button>ПТ</button>
-        <button *ngIf="report.generateInSaturday" (click)="report.generateInSaturday = false" mat-raised-button>СБ
+        <button *ngIf="!report.generateInWednesday" (click)="report.generateInWednesday = true" nbButton>СР</button>
+        <button *ngIf="report.generateInThursday" (click)="report.generateInThursday = false" nbButton status="primary">
+          ЧТ
         </button>
-        <button *ngIf="!report.generateInSaturday" (click)="report.generateInSaturday = true" mat-button>СБ</button>
-        <button *ngIf="report.generateInSunday" (click)="report.generateInSunday = false" mat-raised-button>ВС</button>
-        <button *ngIf="!report.generateInSunday" (click)="report.generateInSunday = true" mat-button>ВС</button>
+        <button *ngIf="!report.generateInThursday" (click)="report.generateInThursday = true" nbButton>ЧТ</button>
+        <button *ngIf="report.generateInFriday" (click)="report.generateInFriday = false" nbButton status="primary">ПТ
+        </button>
+        <button *ngIf="!report.generateInFriday" (click)="report.generateInFriday = true" nbButton>ПТ</button>
+        <button *ngIf="report.generateInSaturday" (click)="report.generateInSaturday = false" nbButton status="primary">
+          СБ
+        </button>
+        <button *ngIf="!report.generateInSaturday" (click)="report.generateInSaturday = true" nbButton>СБ</button>
+        <button *ngIf="report.generateInSunday" (click)="report.generateInSunday = false" nbButton status="primary">ВС
+        </button>
+        <button *ngIf="!report.generateInSunday" (click)="report.generateInSunday = true" nbButton>ВС</button>
       </div>
     </nb-card-body>
     <nb-card-footer class="d-flex justify-content-around">
-      <button nbButton (click)="changeGenerateDays()" status="primary">Применить</button>
-      <button nbButton (click)="cancelTime()">Отменить</button>
+      <button nbButton (click)="changeGenerateDays(ref)" status="primary">Применить</button>
+      <button nbButton (click)="cancelTime(ref)">Отменить</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>
