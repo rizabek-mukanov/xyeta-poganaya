@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {NbDialogService} from '@nebular/theme';
-import {AdditionalInfoDialogComponent} from './dialog/additional-info-dialog/additional-info-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {AdditionalInfoMatDialogComponent} from './dialog/additional-info-mat-dialog/additional-info-mat-dialog.component';
 import {ActivatedRoute} from '@angular/router';
 import {ReportSettingsComponent} from './dialog/report-settings/report-settings.component';
-import {ReportSettingsMatDialogComponent} from './dialog/report-settings-mat-dialog/report-settings-mat-dialog.component';
 import {PublicationsService} from '../../@core/services/publications.service';
 
 @Component({
@@ -16,9 +14,10 @@ import {PublicationsService} from '../../@core/services/publications.service';
 })
 export class CounterPartiesComponent implements OnInit {
   dataSource: any;
-  displayedColumns: string[] = ['image', 'createdAt', 'sendAt', 'status', 'autoSend', 'sendBtn'];
+  displayedColumns: string[] = ['image', 'createdAt', 'sendAt', 'status', 'receivers', 'autoSend', 'sendBtn'];
   fileUrl = environment.imageUrl;
   id: number;
+  report: any;
 
   constructor(private dialogService: NbDialogService,
               public matDialog: MatDialog,
@@ -53,7 +52,8 @@ export class CounterPartiesComponent implements OnInit {
   }
 
   getPublications() {
-    this.publicationsService.getAll().subscribe(response => {
+    this.publicationsService.getById(this.id).subscribe(response => {
+      this.report = response;
       console.log(response);
       this.dataSource = response;
     }, error => {
@@ -62,8 +62,9 @@ export class CounterPartiesComponent implements OnInit {
   }
 
   openAdditionInfoMatDialog(report: any) {
+    console.log(report);
     const dialogRef = this.matDialog.open(AdditionalInfoMatDialogComponent, {
-      data: report,
+      data: this.id,
       panelClass: 'additional-info-modal',
     });
     dialogRef.afterClosed().subscribe(result => {

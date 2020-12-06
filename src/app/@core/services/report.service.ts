@@ -22,4 +22,8 @@ export class ReportService {
       },
     });
   }
+
+  public updateReport(report: any) {
+    return this.http.put<any>(this.fullUrl + '/update', report);
+  }
 }

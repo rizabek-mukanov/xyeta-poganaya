@@ -8,7 +8,7 @@ import {
   NbCardModule,
   NbIconModule,
   NbInputModule,
-  NbSelectModule,
+  NbSelectModule, NbSpinnerModule,
   NbToggleModule,
 } from '@nebular/theme';
 import {FormsModule} from '@angular/forms';
@@ -16,16 +16,19 @@ import {MaterialClassifierDialogComponent} from './dialog/material-classifier-di
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import { MaterialsDialogComponent } from './dialog/materials-dialog/materials-dialog.component';
+import {MaterialsDialogComponent} from './dialog/materials-dialog/materials-dialog.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {PdfViewComponent} from './pdf-module/pdf-view/pdf-view.component';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 
 @NgModule({
   declarations: [ReportSettingsComponent,
     MaterialClassifierDialogComponent,
-    MaterialsDialogComponent],
+    MaterialsDialogComponent,
+    PdfViewComponent],
   imports: [
     CommonModule,
     ReportSettingsRoutingModule,
@@ -42,6 +45,11 @@ import {MatButtonModule} from '@angular/material/button';
     MatTableModule,
     MatInputModule,
     MatButtonModule,
+    PdfViewerModule,
+    NbSpinnerModule,
+  ],
+  exports: [
+    PdfViewComponent,
   ],
 })
 export class ReportSettingsModule {

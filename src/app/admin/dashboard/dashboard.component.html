@@ -7,10 +7,11 @@
       <ng-container matColumnDef="image" sticky>
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let report">
-          <img [routerLink]="'/admin/report-settings/' + report.id" src="{{fileUrl + '/' + report.imageUrl}}" alt="" class="table-image">
+          <img [routerLink]="'/admin/report-settings/' + report.id" src="{{fileUrl + '/' + report.imageUrl}}" alt=""
+               class="table-image">
         </td>
       </ng-container>
-      <ng-container  matColumnDef="name" sticky>
+      <ng-container matColumnDef="name" sticky>
         <th mat-header-cell *matHeaderCellDef>Наименование</th>
         <td mat-cell *matCellDef="let report">{{report.name}}</td>
       </ng-container>
@@ -24,7 +25,9 @@
       </ng-container>
       <ng-container matColumnDef="dates" sticky>
         <th mat-header-cell *matHeaderCellDef>Дата публикаций в месяце</th>
-        <td mat-cell *matCellDef="let report">{{report.dates}}</td>
+        <td mat-cell *matCellDef="let report">
+          {{report.days}}
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

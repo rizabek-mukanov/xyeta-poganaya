@@ -26,17 +26,17 @@
 				<td class="row-{{(report.status === 'SENT') ? 'success': ''}}" mat-cell
 				    *matCellDef="let report">{{(report.status === 'SENT') ? 'Отправлен' : 'Опубликовано'}}</td>
 			</ng-container>
-<!--			<ng-container matColumnDef="counterParties">-->
-<!--				<th mat-header-cell *matHeaderCellDef>Кому отправлен</th>-->
-<!--				<td mat-cell-->
-<!--				    *matCellDef="let report">{{(report.counterParties.length === 1) ?-->
-<!--            report.counterParties[0] :-->
-<!--            report.counterParties.length + ' получателей'}}-->
-<!--					<br>-->
-<!--					<a class="watch-list" (click)="openAdditionInfoMatDialog(report)"-->
-<!--					   *ngIf="report?.counterParties?.length !== 1 && report?.counterParties?.length !== 0 ">Посмотреть список</a>-->
-<!--				</td>-->
-<!--			</ng-container>-->
+			<ng-container matColumnDef="receivers">
+				<th mat-header-cell *matHeaderCellDef>Кому отправлен</th>
+				<td mat-cell
+				    *matCellDef="let report">{{(report.receivers.length === 1) ?
+            report.receivers[0] :
+            report.receivers.length + ' получателей'}}
+					<br>
+					<a class="watch-list" (click)="openAdditionInfoMatDialog(report)"
+					   *ngIf="report?.receivers?.length !== 1 && report?.receivers?.length !== 0 ">Посмотреть список</a>
+				</td>
+			</ng-container>
 			<ng-container matColumnDef="autoSend">
 				<th mat-header-cell *matHeaderCellDef>Автоотправка</th>
 				<td mat-cell *matCellDef="let report">

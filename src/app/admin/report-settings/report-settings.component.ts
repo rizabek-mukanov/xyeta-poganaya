@@ -18,6 +18,13 @@ export class ReportSettingsComponent implements OnInit {
   pageLoaded: boolean = false;
   hoursList: any = [];
   minutesList: any = [];
+  pdfSrc: string = 'http://10.110.160.50:8887/api/generate/pdf/pdf-18-15-51.pdf';
+  pdf: any;
+  page: 1;
+  pdfPagesList: any = [];
+  isLoading = false;
+
+
   // daysList: any = [
   //   {generate: 'generateInMonday', dayStr: 'ПН', isTrue: 'false'},
   //   {generate: 'generateInTuesday', dayStr: 'ВТ', isTrue: 'false'},
@@ -37,7 +44,7 @@ export class ReportSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.readyTimeList();
-    this.getReportInfo();
+    this.getReportInfo(true);
   }
 
   readyTimeList() {
@@ -62,12 +69,16 @@ export class ReportSettingsComponent implements OnInit {
   }
 
 
-  getReportInfo() {
+  getReportInfo(firstInit?: boolean) {
+    if (!firstInit) {
+      firstInit = false;
+    }
     this.reportService.getById(this.id).subscribe(async data => {
-      console.log(data);
       this.report = data;
       this.pageLoaded = true;
-      await this.divideTime();
+      if (firstInit) {
+        await this.divideTime();
+      }
     }, error => {
       console.error(error);
     });
@@ -76,15 +87,22 @@ export class ReportSettingsComponent implements OnInit {
   choseDates(dialog: TemplateRef<any>) {
     this.dialogService.open(dialog, {
       context: this.report,
+      closeOnBackdropClick: false,
     });
   }
 
-  changed(report: any) {
-    console.log(report);
+  changed() {
+    this.isLoading = true;
+    this.reportService.updateReport(this.report).toPromise().then( response => {
+      console.log(response);
+      this.isLoading = false;
+    }).catch( error => {
+      this.getReportInfo(false);
+      this.isLoading = false;
+    }).finally( () => this.isLoading = false);
   }
 
   openMatClassifier(report: any) {
-    console.log('salam');
     const dialogRef = this.matDialog.open(MaterialClassifierDialogComponent, {
       data: report,
       panelClass: 'additional-info-modal',
@@ -103,15 +121,36 @@ export class ReportSettingsComponent implements OnInit {
   }
 
   changeGenerateDays(ref: any) {
+    this.isLoading = true;
     if (this.report) {
       this.report.timeOfPublication = `${this.reportHours}:${this.reportMinutes}`;
     }
-    console.log(this.report);
+    this.reportService.updateReport(this.report).toPromise().then(resp => {
+      console.log(resp);
+      this.isLoading = false;
+    }).catch(error => {
+      this.getReportInfo(true);
+      this.isLoading = false;
+    }).finally( () => this.isLoading = false);
     ref.close();
   }
 
   cancelTime(ref: any) {
-    this.getReportInfo();
+    this.getReportInfo(true);
     ref.close();
   }
+
+
+  afterLoadComplete(pdf: any) {
+    this.pdf = pdf;
+    for (let i = 1; i < pdf.numPages; i++) {
+      const pageObject = {pageNumber: i};
+      this.pdfPagesList.push(pageObject);
+    }
+  }
+
+  goToPdfPage(pdfPage: any) {
+    this.page = pdfPage.pageNumber;
+  }
+
 }

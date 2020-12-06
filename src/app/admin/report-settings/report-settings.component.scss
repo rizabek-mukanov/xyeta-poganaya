@@ -5,7 +5,26 @@
 .chose-date-card {
   width: 700px;
 }
-
+nb-card.main-card {
+  height: 90vh;
+}
 .chose-time-card {
   width: 200px;
 }
+.small-pdf-page {
+
+}
+.page-col-class {
+  //padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+span.page-number {
+  font-weight: bold;
+}
+.pdf-small-pages {
+  position: fixed;
+  top: 28%;
+  right: 4%;
+}
+

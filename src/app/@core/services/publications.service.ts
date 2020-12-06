@@ -16,7 +16,7 @@ export class PublicationsService {
   }
 
   public getById(id: any) {
-    return this.http.get<any>(this.fullUrl + 'findId', {
+    return this.http.get<any>(this.fullUrl + 'report', {
       params: {
         id,
       },

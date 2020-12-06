@@ -23,18 +23,34 @@ export class DashboardComponent implements OnInit {
     this.reportService.getAll().subscribe( response => {
       console.log(response);
       this.dataSource = response;
+      let days = '';
+      this.dataSource.forEach( element => {
+        if (element.generateInMonday) {
+          days = 'ПН ';
+        }
+        if (element.generateInTuesday) {
+          days += 'ВТ ';
+        }
+        if (element.generateInWednesday) {
+          days += 'СР ';
+        }
+        if (element.generateInThursday) {
+          days += 'ЧТ ';
+        }
+        if (element.generateInFriday) {
+          days += 'ПТ ';
+        }
+        if (element.generateInSaturday) {
+          days += 'СБ ';
+        }
+        if (element.generateInSunday) {
+          days += 'ВС ';
+        }
+        element.days = days;
+      });
     }, error => {
       console.error(error);
     });
-      // this.dataSource = [
-      // {
-      //   id: 1,
-      //   name: 'Наименование отчета',
-      //   imageUrl: 'logo_1586937607102.jpg',
-      //   status: 'Отправлено 5/8',
-      //   count: 5,
-      //   dates: '5,6,8,10',
-      // }];
   }
 
   test(row: any) {

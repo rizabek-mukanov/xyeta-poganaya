@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {CategoryService} from '../../../../@core/services/category.service';
 
 @Component({
   selector: 'ngx-additional-info-mat-dialog',
@@ -7,25 +8,26 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./additional-info-mat-dialog.component.scss'],
 })
 export class AdditionalInfoMatDialogComponent implements OnInit {
-  dataSource: any;
   displayedColumns: string[] = ['id', 'name', 'bin', 'email', 'phone'];
+  categories: any;
 
   constructor(
     public dialogRef: MatDialogRef<AdditionalInfoMatDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
-    this.dataSource = [
-      {
-        id: 1,
-        name: 'asd',
-        bin: 123123,
-        email: 'asd@gmail.com',
-        phone: '87085172655',
-      },
-    ];
-    console.log(this.data);
+    this.getCategoriesByReportId();
+  }
+
+  getCategoriesByReportId() {
+    this.categoryService.getById(this.data).subscribe(response => {
+      console.log(response);
+      this.categories = response;
+    }, error => {
+      console.error(error);
+    });
   }
 
   closeDialog() {

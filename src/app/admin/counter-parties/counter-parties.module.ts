@@ -6,19 +6,15 @@ import {CounterPartiesComponent} from './counter-parties.component';
 import {NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbToggleModule} from '@nebular/theme';
 import {MatTableModule} from '@angular/material/table';
 import {FormsModule} from '@angular/forms';
-import {AdditionalInfoDialogComponent} from './dialog/additional-info-dialog/additional-info-dialog.component';
 import {AdditionalInfoMatDialogComponent} from './dialog/additional-info-mat-dialog/additional-info-mat-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ReportSettingsComponent} from './dialog/report-settings/report-settings.component';
-import {ReportSettingsMatDialogComponent} from './dialog/report-settings-mat-dialog/report-settings-mat-dialog.component';
 
 
 @NgModule({
   declarations: [CounterPartiesComponent,
-    AdditionalInfoDialogComponent,
     AdditionalInfoMatDialogComponent,
     ReportSettingsComponent,
-    ReportSettingsMatDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +28,7 @@ import {ReportSettingsMatDialogComponent} from './dialog/report-settings-mat-dia
     NbInputModule,
     NbIconModule,
   ],
-  entryComponents: [AdditionalInfoDialogComponent, AdditionalInfoMatDialogComponent],
+  entryComponents: [AdditionalInfoMatDialogComponent],
 })
 export class CounterPartiesModule {
 }
