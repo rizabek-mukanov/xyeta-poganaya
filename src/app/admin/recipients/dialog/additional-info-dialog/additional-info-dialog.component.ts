@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog
 import {DeleteInfoDialogComponent} from '../delete-info-dialog/delete-info-dialog.component';
 import {EditInfoDialogComponent} from '../edit-info-dialog/edit-info-dialog.component';
 import {AddInfoDialogComponent} from '../add-info-dialog/add-info-dialog.component';
+import {ContractorService} from '../../../../@core/services/contractor.service';
+import {CategoryService} from '../../../../@core/services/category.service';
 
 @Component({
   selector: 'ngx-additional-info-dialog',
@@ -10,25 +12,27 @@ import {AddInfoDialogComponent} from '../add-info-dialog/add-info-dialog.compone
   styleUrls: ['./additional-info-dialog.component.scss'],
 })
 export class AdditionalInfoDialogComponent implements OnInit {
-  dataSource: any;
+  contractors: any;
   displayedColumns: string[] = ['id', 'name', 'bin', 'email', 'phone', 'actions'];
 
   constructor(public dialogRef: MatDialogRef<AdditionalInfoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              public matDialog: MatDialog) {
+              public matDialog: MatDialog,
+              private contractorService: ContractorService,
+              private categoryService: CategoryService) {
   }
 
   ngOnInit(): void {
-    this.dataSource = [
-      {
-        id: 1,
-        name: 'asd',
-        bin: 123123,
-        email: 'asd@gmail.com',
-        phone: '87085172655',
-      },
-    ];
     console.log(this.data);
+    this.getAllContractors();
+  }
+  getAllContractors() {
+    this.contractorService.getByCategoryId(this.data.id).subscribe(response => {
+      console.log(response);
+      this.contractors = response;
+    }, error => {
+      console.error(error);
+    });
   }
 
   closeDialog() {

@@ -4,3 +4,28 @@
 [nbInput] {
   color: black !important;
 }
+[nbInput] {
+  background-color: white !important;
+}
+table {
+  width: 100%;
+
+  & td {
+    color: black;
+  }
+
+  & th {
+    color: black;
+  }
+}
+.center-test {
+  padding: 200px;
+}
+.text-div-center {
+  justify-content: center;
+  color: black;
+  text-align: center;
+}
+.square-div {
+  border: grey 1px solid;
+}

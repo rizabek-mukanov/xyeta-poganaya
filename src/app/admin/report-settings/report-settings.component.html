@@ -74,7 +74,7 @@
       </div>
       <div class="col-5 pdf-small-pages">
         <div class="row">
-          <div class="page-col-class col-3" *ngFor="let pdfPage of pdfPagesList">
+          <div class="page-col-class col-4" *ngFor="let pdfPage of pdfPagesList">
             <pdf-viewer [src]="pdfSrc"
                         (click)="goToPdfPage(pdfPage)"
                         [render-text]="true"

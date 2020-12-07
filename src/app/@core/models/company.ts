@@ -1,6 +1,7 @@
 export interface Company {
-  name: string;
+  id: number;
+  contractorName: string;
   bin: string;
   email: string;
-  phone: string;
+  phoneNumber: string;
 }

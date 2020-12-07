@@ -8,24 +8,29 @@
     </button>
   </nb-card-header>
   <nb-card-body class="justify-content-center">
-<!--    <div class="form-control-group mb-2">-->
-<!--      <label class="label" for="code">Бин организации</label>-->
-<!--      <input type="text" id="code" (keyup)="searchCode()" [(ngModel)]="company.code" fullWidth nbInput-->
-<!--             placeholder="Code">-->
-<!--    </div>-->
-<!--    <div class="form-control-group mb-2">-->
-<!--      <label class="label" for="nameKaz">NameKaz</label>-->
-<!--      <input type="text" id="nameKaz" (keyup)="searchNameKaz()" [(ngModel)]="company.NameKaz" fullWidth nbInput-->
-<!--             placeholder="NameKaz">-->
-<!--    </div>-->
-<!--    <div class="form-control-group mb-5">-->
-<!--      <label class="label" for="nameRus">NameRus</label>-->
-<!--      <input type="text" id="nameRus" (keyup)="searchNameRus()" [(ngModel)]="company.NameRus" fullWidth nbInput-->
-<!--             placeholder="NameRus">-->
-<!--    </div>-->
+    <div class="form-control-group mb-2">
+      <label class="label" for="bin">Бин организации</label>
+      <input type="text" id="bin" [(ngModel)]="company.bin" fullWidth nbInput
+             placeholder="Введите БИН">
+    </div>
+    <div class="form-control-group mb-2">
+      <label class="label" for="name">Наименование</label>
+      <input type="text" id="name" [(ngModel)]="company.contractorName" fullWidth nbInput
+             placeholder="Введите наименование">
+    </div>
+    <div class="form-control-group mb-2">
+      <label class="label" for="email">Email</label>
+      <input type="text" id="email" [(ngModel)]="company.email" fullWidth nbInput
+             placeholder="Введите email">
+    </div>
+    <div class="form-control-group mb-5">
+      <label class="label" for="phone">Телефон</label>
+      <input type="text" id="phone" [(ngModel)]="company.phoneNumber" fullWidth nbInput
+             placeholder="Введите номер телефона">
+    </div>
   </nb-card-body>
   <nb-card-footer class="d-flex justify-content-center">
-    <button class="mr-3" nbButton status="primary">Добавить</button>
-    <button nbButton >Отменить</button>
+    <button class="mr-3" (click)="newCompany()"  nbButton status="primary">Добавить</button>
+    <button nbButton (click)="closeDialog()" >Отменить</button>
   </nb-card-footer>
 </nb-card>
