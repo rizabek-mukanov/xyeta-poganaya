@@ -77,9 +77,18 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
     if (event !== null) {
       this.selectedOtdel = event;
       this.totalCount = event.mcCount;
+
     } else {
       console.log('salam');
       this.totalCount = 0;
     }
+  }
+
+  getAllSubOtdels(subOtdel: any) {
+    this.materialCatalogService.getAllOtdels().subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.error(error);
+    });
   }
 }
