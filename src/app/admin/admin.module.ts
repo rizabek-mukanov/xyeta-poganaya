@@ -5,6 +5,7 @@ import {AdminRoutingModule} from './admin-routing.module';
 import {AdminComponent} from './admin.component';
 import {NbMenuModule} from '@nebular/theme';
 import {ThemeModule} from '../@theme/theme.module';
+import {MiscellaneousModule} from './miscellaneous/miscellaneous.module';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import {ThemeModule} from '../@theme/theme.module';
     CommonModule,
     AdminRoutingModule,
     NbMenuModule,
+    MiscellaneousModule,
     ThemeModule,
   ],
 })

@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {environment} from '../../../environments/environment';
 import {ReportService} from '../../@core/services/report.service';
 import {Router} from '@angular/router';
+import {fromEvent, Subscription} from 'rxjs';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -14,17 +15,18 @@ export class DashboardComponent implements OnInit {
   fileUrl = environment.imageUrl;
   displayedColumns: string[] = ['image', 'name', 'amount', 'status', 'dates'];
 
+
   constructor(private reportService: ReportService,
               private router: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.reportService.getAll().subscribe( response => {
+    this.reportService.getAll().subscribe(response => {
       console.log(response);
       this.dataSource = response;
       let days = '';
-      this.dataSource.forEach( element => {
+      this.dataSource.forEach(element => {
         if (element.generateInMonday) {
           days = 'ПН ';
         }
@@ -56,4 +58,6 @@ export class DashboardComponent implements OnInit {
   test(row: any) {
     this.router.navigateByUrl(`/admin/counter-parties/${row.id}`);
   }
+
+
 }

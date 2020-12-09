@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
+import {publicDecrypt} from 'crypto';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,9 @@ import {environment} from '../../../environments/environment';
 export class ContractorService {
   fullUrl = environment.apiUrl + '/api/contractor';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
+
   public getAll() {
     return this.http.get<any>(this.fullUrl + '/findAll');
   }
@@ -25,6 +28,18 @@ export class ContractorService {
     return this.http.post<any>(this.fullUrl + '/add', object);
   }
 
+  // public deleteContractor(id: any) {
+  //   return this.http.delete(this.fullUrl + `/delete`;
+  //   });
+  // }
+  public deleteContractor(id: number) {
+    return this.http.delete<any>(this.fullUrl + `/delete?id=${id}`);
+  }
+
+
+  // public addNewContractor(object: any) {
+  //   return this.http.post<any>(this.fullUrl + '/add', object);
+  // }
   // public getByReportId(id: any) {
   //   return this.http.get<any>(this.fullUrl + '/report', {
   //     params: {

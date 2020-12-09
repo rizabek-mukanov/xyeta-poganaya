@@ -17,7 +17,7 @@ export class EditInfoDialogComponent implements OnInit {
   }
 
   closeDialog() {
-    this.dialogRef.close('SALAM');
+    this.dialogRef.close('close');
   }
 
   saveRecipient() {

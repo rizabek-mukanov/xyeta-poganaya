@@ -1,6 +1,9 @@
 .addition-info-header {
   background-color: #02344f;
 }
+nb-card-header {
+  color: #ffffff;
+}
 table {
   width: 100%;
 
@@ -20,8 +23,10 @@ nb-card {
   background-color: #e8f2fe;
   color: #02344f;
 }
-nb-select {
-  background-color: red !important;
+.select-button {
+  background-color: #f7f9fc;
+  border-color: #e4e9f2;
+  color: #222b45;
 }
 .category-card-body{
   padding: 0 !important;
@@ -31,7 +36,24 @@ nb-select {
 }
 .border-right-custom {
   border-right: 1px solid #2179db !important;
+  padding-right: 15px;
 }
 .border-left-custom {
   border-left: 1px solid #2179db !important;
+  padding-left: 30px;
 }
+.main-materials-div {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.close-icon {
+  cursor: pointer;
+}
+.material-button {
+  cursor: auto;
+}
+.select-div {
+  max-width: 300px;
+}
+

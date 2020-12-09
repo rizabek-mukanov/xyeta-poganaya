@@ -9,4 +9,5 @@ export const environment = {
   imageUrl: 'https://api.smartplaza.kz/partners/api/file/logo',
   tokenPrefix: 'Bearer ',
   apiToken: 'apiToken',
+  userName: 'userName',
 };

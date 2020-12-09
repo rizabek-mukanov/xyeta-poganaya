@@ -61,6 +61,9 @@ export class AdditionalInfoDialogComponent implements OnInit {
       panelClass: 'additional-info-modal',
     });
     editDialog.afterClosed().subscribe(result => {
+      if (result !== 'close') {
+        this.getAllContractors();
+      }
       console.log(result);
     });
   }
@@ -68,8 +71,12 @@ export class AdditionalInfoDialogComponent implements OnInit {
   addNewRecipient() {
     const addInfoDialog = this.matDialog.open(AddInfoDialogComponent, {
       panelClass: 'additional-info-modal',
+      data: this.data,
     });
     addInfoDialog.afterClosed().subscribe(result => {
+      if (typeof result === 'object') {
+        this.getAllContractors();
+      }
       console.log(result);
     });
   }

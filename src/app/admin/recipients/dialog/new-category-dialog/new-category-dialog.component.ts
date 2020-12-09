@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog
 import {AddInfoDialogComponent} from '../add-info-dialog/add-info-dialog.component';
 import {EditInfoDialogComponent} from '../edit-info-dialog/edit-info-dialog.component';
 import {DeleteInfoDialogComponent} from '../delete-info-dialog/delete-info-dialog.component';
+import {ContractorService} from '../../../../@core/services/contractor.service';
 
 @Component({
   selector: 'ngx-new-category-dialog',
@@ -17,7 +18,8 @@ export class NewCategoryDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<NewCategoryDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              public matDialog: MatDialog) {
+              public matDialog: MatDialog,
+              private contractorService: ContractorService) {
   }
 
   ngOnInit(): void {
@@ -30,6 +32,15 @@ export class NewCategoryDialogComponent implements OnInit {
 
 
   saveCategory() {
+  }
+
+  getAllContractors(id) {
+    this.contractorService.getByCategoryId(id).subscribe(response => {
+      console.log(response);
+      this.receivers = response;
+    }, error => {
+      console.error(error);
+    });
   }
 
   editRecipient(recipient: any) {
@@ -56,15 +67,14 @@ export class NewCategoryDialogComponent implements OnInit {
   addNewCompany() {
     const addInfoDialog = this.matDialog.open(AddInfoDialogComponent, {
       panelClass: 'additional-info-modal',
+      // data: 'newCategory',
+      data: this.categoryName,
     });
     addInfoDialog.afterClosed().subscribe(result => {
-      console.log('new company');
-      if (result !== 'close') {
-        this.receivers.push(result);
-        console.log(this.receivers);
+      if (typeof result === 'object') {
         console.log(result);
+        this.getAllContractors(result.category.id);
       }
-      console.log(this.receivers);
       console.log(result);
     });
   }

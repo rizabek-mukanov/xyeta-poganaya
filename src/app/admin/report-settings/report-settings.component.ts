@@ -1,16 +1,17 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {NbDialogService} from '@nebular/theme';
 import {MatDialog} from '@angular/material/dialog';
 import {MaterialClassifierDialogComponent} from './dialog/material-classifier-dialog/material-classifier-dialog.component';
 import {ReportService} from '../../@core/services/report.service';
+import {fromEvent, Subscription} from 'rxjs';
 
 @Component({
   selector: 'ngx-report-settings',
   templateUrl: './report-settings.component.html',
   styleUrls: ['./report-settings.component.scss'],
 })
-export class ReportSettingsComponent implements OnInit {
+export class ReportSettingsComponent implements OnInit, OnDestroy {
   id: number;
   report: any;
   reportHours: any;
@@ -24,7 +25,10 @@ export class ReportSettingsComponent implements OnInit {
   pdfPagesList: any = [];
   isLoading = false;
   expirationTime: any;
-
+  subscription: Subscription;
+  subscription2: Subscription;
+  subscription3: Subscription;
+  isHandlerDragging: boolean = false;
 
   // daysList: any = [
   //   {generate: 'generateInMonday', dayStr: 'ПН', isTrue: 'false'},
@@ -47,8 +51,56 @@ export class ReportSettingsComponent implements OnInit {
     this.readyTimeList();
     this.getReportInfo(true);
     this.getExpirationTime();
+    this.testSubscribe();
+  }
+  testSubscribe() {
+
+    const handler = document.querySelector('.handler');
+    const wrapper = handler.closest('.wrapper');
+    const boxA = wrapper.querySelector('.box');
+    this.subscription =
+      fromEvent(document, 'mousemove')
+        .subscribe(e => {
+          if (!this.isHandlerDragging) {
+            return false;
+          }
+          // @ts-ignore
+          const containerOffsetLeft = wrapper.offsetLeft;
+
+          // Get x-coordinate of pointer relative to container
+          // @ts-ignore
+          const pointerRelativeXpos = e.clientX - containerOffsetLeft;
+
+          // Arbitrary minimum width set on box A, otherwise its inner content will collapse to width of 0
+          const boxAminWidth = 60;
+
+          // Resize box A
+          // * 8px is the left/right spacing between .handler and its inner pseudo-element
+          // * Set flex-grow to 0 to prevent it from growing
+          // @ts-ignore
+          boxA.style.width = (Math.max(boxAminWidth, pointerRelativeXpos - 1)) + 'px';
+          console.log(boxA);
+          console.log(boxA);
+          // @ts-ignore
+          boxA.style.flexGrow = 0;
+        });
+    this.subscription2 =
+      fromEvent(document, 'mousedown')
+        .subscribe(e => {
+          this.isHandlerDragging = e.target === handler;
+        });
+    this.subscription3 =
+      fromEvent(document, 'mouseup').subscribe(data => {
+        this.isHandlerDragging = false;
+      });
   }
 
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
+    this.subscription3.unsubscribe();
+  }
   readyTimeList() {
     for (let i = 0; i < 24; i++) {
       let hour;
@@ -73,6 +125,9 @@ export class ReportSettingsComponent implements OnInit {
   getExpirationTime() {
     this.reportService.getExpirationTime(this.id).subscribe(data => {
       this.expirationTime = data;
+      if (data.second < 0) {
+        this.expirationTime = {day: 0, hour: 0, minute: 0, second: 0};
+      }
     }, error => {
       console.error(error);
     });
@@ -116,6 +171,7 @@ export class ReportSettingsComponent implements OnInit {
     const dialogRef = this.matDialog.open(MaterialClassifierDialogComponent, {
       data: report,
       panelClass: 'additional-info-modal',
+      backdropClass: 'material-classifier-dialog-class',
       height: '90vw',
     });
     dialogRef.afterClosed().subscribe(result => {

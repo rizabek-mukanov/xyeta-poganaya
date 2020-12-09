@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AdminComponent} from './admin.component';
-import {NotFoundComponent} from '../pages/miscellaneous/not-found/not-found.component';
+import {NotFoundComponent} from './miscellaneous/not-found/not-found.component';
 
 const routes: Routes = [{
   path: '',
@@ -11,6 +11,11 @@ const routes: Routes = [{
       path: 'dashboard',
       loadChildren: () => import('./dashboard/dashboard.module')
         .then(m => m.DashboardModule),
+    },
+    {
+      path: 'miscellaneous',
+      loadChildren: () => import('./miscellaneous/miscellaneous.module')
+        .then(m => m.MiscellaneousModule),
     },
     {
       path: 'counter-parties',

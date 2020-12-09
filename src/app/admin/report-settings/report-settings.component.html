@@ -1,6 +1,6 @@
-<nb-card *ngIf="pageLoaded" class="main-card" [nbSpinner]="isLoading"
+<nb-card class="main-card" [nbSpinner]="isLoading"
          nbSpinnerSize="giant" nbSpinnerStatus="primary">
-  <nb-card-header>
+  <nb-card-header *ngIf="pageLoaded">
     <div class="d-flex">
       <div class="d-flex w-100 align-items-center justify-content-center">
         Настройка публикации отчетов
@@ -61,9 +61,37 @@
   </nb-card-header>
   <nb-card-body>
     <!--    <ngx-pdf-view></ngx-pdf-view>-->
-    <!--    TODO pdf-->
-    <div class="pdf-viewer row">
-      <div class="col-7">
+<!--    <div class="pdf-viewer row">-->
+<!--      <div class="col-7">-->
+<!--        <pdf-viewer [src]="pdfSrc"-->
+<!--                    [render-text]="true"-->
+<!--                    style="display: block;"-->
+<!--                    [(page)]="page"-->
+<!--                    [stick-to-page]="true"-->
+<!--                    (after-load-complete)="afterLoadComplete($event)"-->
+<!--        ></pdf-viewer>-->
+<!--      </div>-->
+<!--      <div class="col-5 pdf-small-pages">-->
+<!--        <div class="row">-->
+<!--          <div class="page-col-class col-4" *ngFor="let pdfPage of pdfPagesList">-->
+<!--            <pdf-viewer [src]="pdfSrc"-->
+<!--                        (click)="goToPdfPage(pdfPage)"-->
+<!--                        [render-text]="true"-->
+<!--                        [show-all]="false"-->
+<!--                        class="pdf-small-page-view"-->
+<!--                        [page]="pdfPage.pageNumber"-->
+<!--                        [zoom]="0.2"-->
+<!--                        style="display: block;"-->
+<!--            ></pdf-viewer>-->
+
+<!--            <span class="page-number">{{pdfPage.pageNumber}}</span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+    <div class="wrapper">
+      <div class="box">
         <pdf-viewer [src]="pdfSrc"
                     [render-text]="true"
                     style="display: block;"
@@ -72,9 +100,10 @@
                     (after-load-complete)="afterLoadComplete($event)"
         ></pdf-viewer>
       </div>
-      <div class="col-5 pdf-small-pages">
-        <div class="row">
-          <div class="page-col-class col-4" *ngFor="let pdfPage of pdfPagesList">
+      <div class="handler"></div>
+      <div class="boxB" style="width: 40%">
+        <div class="row d-flex justify-content-between">
+          <div class="page-col-class" *ngFor="let pdfPage of pdfPagesList">
             <pdf-viewer [src]="pdfSrc"
                         (click)="goToPdfPage(pdfPage)"
                         [render-text]="true"
@@ -89,13 +118,12 @@
           </div>
         </div>
       </div>
-
     </div>
   </nb-card-body>
 
 </nb-card>
 
-
+<div class="test-class"></div>
 <ng-template #dateDialog let-data let-ref="dialogRef">
   <nb-card class="chose-date-card">
     <nb-card-body>
