@@ -11,6 +11,7 @@
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 @import '~bootstrap/scss/grid';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 // loading progress bar theme
 @import './pace.theme';
@@ -30,10 +31,13 @@
   @include ngx-pace-theme();
 
   @include nb-overrides();
-};
+}
+
+;
 .additional-info-modal {
   width: 2000px;
 }
+
 .delete-recipient-dialog {
   background-color: white;
 }
@@ -53,20 +57,24 @@
 //  //  }
 //  //}
 //}
-@media (max-width:  532px) {
+@media (max-width: 532px) {
   .report-settings-modal {
     max-width: 100% !important;
   }
 }
+
 .report-settings-modal {
   width: 1500px;
 }
+
 .material-classifier-dialog-class {
   background-color: #222b45;
 }
-nb-dialog-container{
+
+nb-dialog-container {
   width: 100%;
 }
+
 table {
   width: 100%;
 }

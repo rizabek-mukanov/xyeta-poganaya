@@ -28,6 +28,7 @@ export class AuthService {
   public login(login: string, password: string) {
     return this.http.post<any>(this.fullUrl + '/login', {login, password});
   }
+
   authorize = (perf) => {
     this.authorized.next(true);
     localStorage.setItem(environment.apiToken, perf.access_token);
@@ -48,5 +49,9 @@ export class AuthService {
     // setTimeout(() => {
     //   window.location.reload();
     // }, 100);
+  }
+
+  checkAvailability() {
+    return !!localStorage.getItem(environment.apiToken);
   }
 }

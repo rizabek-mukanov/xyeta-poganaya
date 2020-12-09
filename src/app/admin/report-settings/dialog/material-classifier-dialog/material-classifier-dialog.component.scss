@@ -1,9 +1,11 @@
 .addition-info-header {
   background-color: #02344f;
 }
+
 nb-card-header {
   color: #ffffff;
 }
+
 table {
   width: 100%;
 
@@ -15,45 +17,70 @@ table {
     color: black;
   }
 }
+
 nb-card {
-  color: #17151C !important;
+  color: #17151c !important;
   height: 100%;
 }
+
 .category-card-header {
   background-color: #e8f2fe;
   color: #02344f;
 }
+
 .select-button {
   background-color: #f7f9fc;
   border-color: #e4e9f2;
   color: #222b45;
 }
-.category-card-body{
+
+.category-card-body {
   padding: 0 !important;
 }
+
 [nbInput] {
   color: black !important;
 }
+
 .border-right-custom {
   border-right: 1px solid #2179db !important;
   padding-right: 15px;
 }
+
 .border-left-custom {
   border-left: 1px solid #2179db !important;
   padding-left: 30px;
 }
+.total-count-buton {
+  border-left: white 1px solid;
+  padding-left: 5px;
+}
+
 .main-materials-div {
   width: 100%;
   padding-left: 15px;
   padding-right: 15px;
+  overflow: auto;
 }
+
 .close-icon {
   cursor: pointer;
 }
+
 .material-button {
   cursor: auto;
+  margin-right: 5px;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: auto;
+  padding: 0.5rem;
+  //padding: 0.5rem 0.5rem;
 }
+//.button-height-div {
+//  max-height: 40px;
+//}
 .select-div {
-  max-width: 300px;
+  max-width: 220px;
+  margin-right: 5px;
 }
 

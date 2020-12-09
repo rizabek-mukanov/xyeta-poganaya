@@ -7,8 +7,30 @@
       <nb-icon icon="close-outline"></nb-icon>
     </button>
   </nb-card-header>
+  <nb-card-body class="justify-content-center">
+    <div class="form-control-group mb-2">
+      <label class="label" for="bin">Бин организации</label>
+      <input type="text" id="bin" [(ngModel)]="company.bin" fullWidth nbInput
+             placeholder="Введите БИН">
+    </div>
+    <div class="form-control-group mb-2">
+      <label class="label" for="name">Наименование</label>
+      <input type="text" id="name" [(ngModel)]="company.contractorName" fullWidth nbInput
+             placeholder="Введите наименование">
+    </div>
+    <div class="form-control-group mb-2">
+      <label class="label" for="email">Email</label>
+      <input type="text" id="email" [(ngModel)]="company.email" fullWidth nbInput
+             placeholder="Введите email">
+    </div>
+    <div class="form-control-group mb-5">
+      <label class="label" for="phone">Телефон</label>
+      <input type="text" id="phone" [(ngModel)]="company.phoneNumber" fullWidth nbInput
+             placeholder="Введите номер телефона">
+    </div>
+  </nb-card-body>
   <nb-card-footer class="d-flex justify-content-center">
     <button nbButton class="mr-3" (click)="saveRecipient()" status="primary">Сохранить</button>
-    <button nbButton (click)="closeDialog()" >Отменить</button>
+    <button nbButton (click)="closeDialog()">Отменить</button>
   </nb-card-footer>
 </nb-card>

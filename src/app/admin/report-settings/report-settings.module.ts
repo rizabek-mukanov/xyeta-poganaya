@@ -5,7 +5,7 @@ import {ReportSettingsRoutingModule} from './report-settings-routing.module';
 import {ReportSettingsComponent} from './report-settings.component';
 import {
   NbButtonModule,
-  NbCardModule,
+  NbCardModule, NbCheckboxModule,
   NbIconModule,
   NbInputModule,
   NbSelectModule, NbSpinnerModule,
@@ -23,6 +23,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {PdfViewComponent} from './pdf-module/pdf-view/pdf-view.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {MatIconModule} from '@angular/material/icon';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -50,6 +51,8 @@ import {MatIconModule} from '@angular/material/icon';
     PdfViewerModule,
     NbSpinnerModule,
     MatIconModule,
+    MatCheckboxModule,
+    NbCheckboxModule,
   ],
   exports: [
     PdfViewComponent,

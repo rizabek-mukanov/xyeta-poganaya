@@ -8,12 +8,14 @@ import {AdditionalInfoMatDialogComponent} from '../../../counter-parties/dialog/
   styleUrls: ['./edit-info-dialog.component.scss'],
 })
 export class EditInfoDialogComponent implements OnInit {
+  company: any = {id: null, bin: '', email: '', contractorName: '', phoneNumber: ''};
 
   constructor(public dialogRef: MatDialogRef<EditInfoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
   ngOnInit(): void {
+    console.log(this.data);
   }
 
   closeDialog() {

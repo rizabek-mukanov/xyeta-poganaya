@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog
 import {MaterialsDialogComponent} from '../materials-dialog/materials-dialog.component';
 import {MaterialCatalogService} from '../../../../@core/services/material-catalog.service';
 import {NbThemeService} from '@nebular/theme';
+import {type} from "os";
 
 @Component({
   selector: 'ngx-material-classifier-dialog',
@@ -10,9 +11,15 @@ import {NbThemeService} from '@nebular/theme';
   styleUrls: ['./material-classifier-dialog.component.scss'],
 })
 export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
-  otdels: any;
+  otdels: any ;
   totalCount: number = 0;
-  selectedOtdel: any;
+  // selectedOtdel: any = [];
+  rasdels: any = [];
+  podrasdels: any = [];
+  gruppas: any = [];
+  podgruppas: any = [];
+  chosenMaterial: any = null;
+  materials: any = [];
 
   constructor(public dialogRef: MatDialogRef<MaterialClassifierDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -39,56 +46,121 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
       console.error(error);
     });
   }
+  getAllSubOtdels(mcCode: number, type: number) {
+    this.materialCatalogService.getAllSubOtdels(mcCode).subscribe( response => {
+      switch (type) {
+        case 1:
+          this.rasdels = response;
+          break;
+        case 2:
+          this.podrasdels = response;
+          break;
+        case 3:
+          this.gruppas = response;
+          break;
+        case 4:
+          this.podgruppas = response;
+          break;
+
+      }
+      console.log(response);
+    })
+  }
 
   closeDialog() {
+    this.materials = [];
     this.dialogRef.close('SALAM');
   }
 
   clearFilter() {
+    this.materials = [];
     console.log('clear filter');
   }
 
   openMaterialsDialog() {
-    const materials = [
-      {id: 1, name: 'Суглинок', code: 21010102040, unit: 'м3'},
-      {id: 2, name: 'Грунт', code: 21010102040, unit: 'м3'},
-      {id: 3, name: 'Земля', code: 21010102040, unit: 'м3'},
-      {id: 4, name: 'Супесь', code: 21010102040, unit: 'м3'},
-      {id: 5, name: 'Грунтовая смесь', code: 21010102040, unit: 'м3'},
-      {id: 6, name: 'Песок', code: 21010102040, unit: 'м3'},
-      {id: 7, name: 'Торф', code: 21010102040, unit: 'м3'},
-    ];
     const dialogRef = this.matDialog.open(MaterialsDialogComponent, {
-      data: materials,
+      data: this.chosenMaterial,
       panelClass: 'additional-info-modal',
+      height: '90vh',
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (typeof result === 'object') {
+        this.materials = result;
+      } else if (typeof result === 'string') {
+      }
       console.log(result);
     });
   }
 
-  removeFromList() {
-    console.log('remove');
+  removeFromList(material: any, i: number) {
+    console.log(i);
+    console.log(material);
+    this.materials.splice(i, 1);
   }
 
-  changeSelected(event: any) {
-    console.log(event);
-    console.log(typeof event);
+  changeOtdel(event: any) {
     if (event !== null) {
-      this.selectedOtdel = event;
+      // this.selectedOtdel = event;
       this.totalCount = event.mcCount;
-
+      this.rasdels = [];
+      this.podrasdels = [];
+      this.gruppas = [];
+      this.podgruppas = [];
+      this.chosenMaterial = null;
+      this.getAllSubOtdels(event.mcCode, 1);
     } else {
-      console.log('salam');
       this.totalCount = 0;
     }
   }
 
-  getAllSubOtdels(subOtdel: any) {
-    this.materialCatalogService.getAllOtdels().subscribe(response => {
-      console.log(response);
-    }, error => {
-      console.error(error);
-    });
+
+  changeRasdel(event: any) {
+    if (event !== null) {
+      this.totalCount = event.mcCount;
+      this.podrasdels = [];
+      this.gruppas = [];
+      this.podgruppas = [];
+      this.chosenMaterial = null;
+      this.getAllSubOtdels(event.mcCode, 2);
+    } else {
+      this.totalCount = 0;
+    }
+  }
+
+  changePodrazdel(event: any) {
+    if (event !== null) {
+      this.totalCount = event.mcCount;
+      this.gruppas = [];
+      this.podgruppas = [];
+      this.chosenMaterial = null;
+      this.getAllSubOtdels(event.mcCode, 3);
+    } else {
+      this.totalCount = 0;
+    }
+  }
+
+  changeGruppa(event: any) {
+    if (event !== null) {
+      this.podgruppas = [];
+      this.chosenMaterial = null;
+      this.totalCount = event.mcCount;
+      this.getAllSubOtdels(event.mcCode, 4);
+    } else {
+      this.totalCount = 0;
+    }
+  }
+
+  changePodgruppa(event: any) {
+    if (event !== null) {
+      this.totalCount = event.mcCount;
+      console.log(event);
+      this.chosenMaterial = event;
+    } else {
+      this.totalCount = 0;
+    }
+  }
+
+  submitMaterials() {
+    console.log(this.materials);
   }
 }

@@ -12,7 +12,7 @@ export const environment = {
   production: false,
   // apiUrl: 'http://10.111.2.26:8080',
   // apiUrl: 'http://localhost:8080',
-  apiUrl: 'http://10.111.2.141:8080',
+  apiUrl: 'http://172.20.20.23:8080',
   imageUrl: 'https://api.smartplaza.kz/partners/api/file/logo',
   tokenPrefix: 'Bearer ',
   apiToken: 'apiToken',

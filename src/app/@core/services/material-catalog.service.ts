@@ -15,8 +15,7 @@ export class MaterialCatalogService {
     return this.http.get<any>(this.fullUrl + '/otdel');
   }
 
-// TODO api
   public getAllSubOtdels(id: any) {
-    return this.http.get<any>(this.fullUrl + '/otdel/asd?mcId=' + id);
+    return this.http.get<any>(this.fullUrl + '/otdel/sub?mcOwner=' + id);
   }
 }

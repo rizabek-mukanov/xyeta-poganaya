@@ -7,48 +7,53 @@
   </nb-card-header>
   <nb-card-body class="classifier-card-body">
     <div class="d-flex justify-content-between">
-      <div class="select-div">
-        <nb-select (selectedChange)="changeSelected($event)"  fullWidth placeholder="Отдел">
-          <nb-option [value]="null">Выберите отдел</nb-option>
-          <nb-option class="d-flex justify-content-between" *ngFor="let otdel of otdels" [value]="otdel">
-            <div>{{otdel?.mcName}}</div>
-            <div>{{otdel?.mcCount}}</div>
-          </nb-option>
-        </nb-select>
+      <div class="d-flex justify-content-start">
+        <div class="select-div">
+          <nb-select (selectedChange)="changeOtdel($event)" fullWidth placeholder="Отдел">
+            <nb-option class="d-flex justify-content-between" *ngFor="let otdel of otdels" [value]="otdel">
+              <div>{{otdel?.mcName}}</div>
+              <div>{{otdel?.mcCount}}</div>
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="select-div" *ngIf="rasdels.length > 0">
+          <nb-select (selectedChange)="changeRasdel($event)" fullWidth placeholder="Раздел">
+            <nb-option class="d-flex justify-content-between" *ngFor="let rasdel of rasdels" [value]="rasdel">
+              <div>{{rasdel?.mcName}}</div>
+              <div>{{rasdel?.mcCount}}</div>
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="select-div" *ngIf="podrasdels.length > 0">
+          <nb-select (selectedChange)="changePodrazdel($event)" fullWidth placeholder="Подраздел">
+            <nb-option class="d-flex justify-content-between" *ngFor="let otdel of podrasdels" [value]="otdel">
+              <div>{{otdel?.mcName}}</div>
+              <div>{{otdel?.mcCount}}</div>
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="select-div" *ngIf="gruppas.length > 0">
+          <nb-select (selectedChange)="changeGruppa($event)" fullWidth placeholder="Группа">
+            <nb-option class="d-flex justify-content-between" *ngFor="let otdel of gruppas" [value]="otdel">
+              <div>{{otdel?.mcName}}</div>
+              <div>{{otdel?.mcCount}}</div>
+            </nb-option>
+          </nb-select>
+        </div>
+        <div class="select-div" *ngIf="podgruppas.length > 0">
+          <nb-select (selectedChange)="changePodgruppa($event)" fullWidth placeholder="Подгруппа">
+            <nb-option class="d-flex justify-content-between" *ngFor="let otdel of podgruppas" [value]="otdel">
+              <div>{{otdel?.mcName}}</div>
+              <div>{{otdel?.mcCount}}</div>
+            </nb-option>
+          </nb-select>
+        </div>
       </div>
-<!--      <div class="select-div">-->
-<!--        <nb-select fullWidth placeholder="Отдел">-->
-<!--          <nb-option>Выберите Раздел</nb-option>-->
-<!--          <nb-option *ngFor="let department of departments" [value]="department?.name">{{department?.name}}</nb-option>-->
-<!--          <nb-option [value]="null">Выберите Раздел</nb-option>-->
-<!--        </nb-select>-->
-<!--      </div>-->
-<!--      <div class="select-div">-->
-<!--        <nb-select fullWidth placeholder="Подраздел">-->
-<!--          <nb-option>Выберите подраздел</nb-option>-->
-<!--          <nb-option *ngFor="let department of departments" [value]="department?.name">{{department?.name}}</nb-option>-->
-<!--          &lt;!&ndash;      <nb-option [value]="null">Clean with null value</nb-option>&ndash;&gt;-->
-<!--        </nb-select>-->
-<!--      </div>-->
-<!--      <div class="select-div">-->
-<!--        <nb-select fullWidth placeholder="Группа">-->
-<!--          <nb-option>Выберите группу</nb-option>-->
-<!--          <nb-option *ngFor="let department of departments" [value]="department?.name">{{department?.name}}</nb-option>-->
-<!--          &lt;!&ndash;      <nb-option [value]="null">Clean with null value</nb-option>&ndash;&gt;-->
-<!--        </nb-select>-->
-<!--      </div>-->
-<!--      <div class="select-div">-->
-<!--        <nb-select fullWidth placeholder="Подгруппа">-->
-<!--          <nb-option>Выберите подгруппу</nb-option>-->
-<!--          <nb-option *ngFor="let department of departments" [value]="department?.name">{{department?.name}}</nb-option>-->
-<!--          &lt;!&ndash;      <nb-option [value]="null">Clean with null value</nb-option>&ndash;&gt;-->
-<!--        </nb-select>-->
-<!--      </div>-->
-        <button (click)="openMaterialsDialog()" style="width: 190px" nbButton status="primary"
-                class="d-flex justify-content-between">
-          <div>Материалы</div>
-          <div>{{totalCount}}</div>
-        </button>
+      <button [disabled]="!chosenMaterial" (click)="openMaterialsDialog()" style="width: 190px" nbButton status="primary"
+              class="d-flex justify-content-between">
+        <div>Материалы</div>
+        <div class="total-count-buton">{{totalCount}}</div>
+      </button>
     </div>
   </nb-card-body>
   <nb-card-footer>
@@ -59,14 +64,17 @@
           Очистить фильтр
         </button>
       </div>
-      <div class="main-materials-div">
-        <button class="d-flex justify-content-between material-button" nbButton outline status="primary">
-          Грунт  <nb-icon (click)="removeFromList()" class="close-icon" icon="close-outline"></nb-icon>
-        </button>
+      <div class="main-materials-div d-flex justify-content-start">
+        <div *ngFor="let material of materials; let i = index" class="button-height-div">
+          <button class="d-flex justify-content-between material-button" nbButton outline status="primary">
+            {{material.mtName}}
+            <nb-icon (click)="removeFromList(material, i)" class="close-icon" icon="close-outline"></nb-icon>
+          </button>
+        </div>
       </div>
       <div class="border-left-custom">
         <div class="row mb-2">
-          <button nbButton status="primary">Применить</button>
+          <button (click)="submitMaterials()"  nbButton status="primary">Применить</button>
         </div>
         <div class="row">
           <button nbButton outline status="primary" (click)="closeDialog()">Отменить</button>
