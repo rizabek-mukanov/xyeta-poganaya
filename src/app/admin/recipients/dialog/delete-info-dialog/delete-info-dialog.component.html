@@ -1,5 +1,5 @@
 <h4 mat-dialog-title class="d-flex justify-content-between">
-  Удаление компании {{data.contractorName}}
+  Удаление {{type?.first}}
   <button (click)="closeDialog()" ghost nbButton>
     <nb-icon icon="close-outline"></nb-icon>
   </button>
@@ -16,7 +16,7 @@
   </div>
 
   <p class="text-center bold-text">
-    Вы уверены, что хотите удалить выбранную компанию?
+    Вы уверены, что хотите удалить выбранную {{type?.second}}?
   </p>
   <p class="text-center">
     При нажатии "Удалить", все данные компании безвовзратно будут удалены!

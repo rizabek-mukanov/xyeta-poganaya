@@ -20,8 +20,8 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-import {ErrorInterceptor} from "./@core/interceptors/error";
-import {TokenInterceptor} from "./@core/interceptors/token";
+import {ErrorInterceptor} from './@core/interceptors/error';
+import {TokenInterceptor} from './@core/interceptors/token';
 
 @NgModule({
   declarations: [

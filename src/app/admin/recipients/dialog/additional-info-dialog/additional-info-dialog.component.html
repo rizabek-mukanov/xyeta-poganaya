@@ -25,10 +25,20 @@
     <nb-card class="bg-white border-0">
       <nb-card-header class="category-card-header d-flex justify-content-between">
         <div>
-          {{data.categoryName}}
+          <div *ngIf="!editableCategory">
+            {{data.categoryName}}
+          </div>
+          <div *ngIf="editableCategory">
+            <input class="bg-white"  type="text" nbInput placeholder="Наименование категории" [(ngModel)]="data.categoryName">
+          </div>
         </div>
-        <div>
-          Редактировать
+        <div class="d-flex align-items-center">
+          <div *ngIf="!editableCategory" class="edit-category-btn mr-2" (click)="editableCategory = true">
+            Редактировать
+          </div>
+          <div *ngIf="editableCategory" class="edit-category-btn mr-2" (click)="editCategory()">
+            Сохранить
+          </div>
           <button nbButton (click)="deleteCategory()" status="danger">Удалить категорию</button>
         </div>
       </nb-card-header>
@@ -36,27 +46,27 @@
         <table mat-table [dataSource]="contractors" class="mat-elevation-z8">
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>Id</th>
-            <td mat-cell
+            <td mat-cell class="pr-3"
                 *matCellDef="let recipient">{{recipient.id}}</td>
           </ng-container>
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Наименование компании</th>
-            <td mat-cell
+            <td mat-cell class="pr-3"
                 *matCellDef="let recipient">{{recipient.contractorName}}</td>
           </ng-container>
           <ng-container matColumnDef="bin">
             <th mat-header-cell *matHeaderCellDef>БИН организации</th>
-            <td mat-cell
+            <td mat-cell class="pr-5"
                 *matCellDef="let recipient">{{recipient.bin}}</td>
           </ng-container>
           <ng-container matColumnDef="email">
             <th mat-header-cell *matHeaderCellDef>Email</th>
-            <td mat-cell
+            <td mat-cell class="pr-5"
                 *matCellDef="let recipient">{{recipient.email}}</td>
           </ng-container>
           <ng-container matColumnDef="phone">
             <th mat-header-cell *matHeaderCellDef>Номер телефона</th>
-            <td mat-cell
+            <td mat-cell class="pr-5"
                 *matCellDef="let recipient">{{recipient.phoneNumber}}</td>
           </ng-container>
           <ng-container matColumnDef="actions">
@@ -66,7 +76,7 @@
               <button (click)="editRecipient(recipient)" nbButton ghost status="primary">
                 <nb-icon icon="edit"></nb-icon>
               </button>
-              <button (click)="deleteRecipient(recipient)" nbButton ghost status="danger">
+              <button (click)="deleteRecipient(recipient, 'company')" nbButton ghost status="danger">
                 <nb-icon icon="close"></nb-icon>
               </button>
             </td>

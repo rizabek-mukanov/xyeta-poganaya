@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog
 import {MaterialsDialogComponent} from '../materials-dialog/materials-dialog.component';
 import {MaterialCatalogService} from '../../../../@core/services/material-catalog.service';
 import {NbThemeService} from '@nebular/theme';
-import {type} from "os";
+import {MaterialListService} from '../../../../@core/services/material-list.service';
 
 @Component({
   selector: 'ngx-material-classifier-dialog',
@@ -11,9 +11,8 @@ import {type} from "os";
   styleUrls: ['./material-classifier-dialog.component.scss'],
 })
 export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
-  otdels: any ;
+  otdels: any;
   totalCount: number = 0;
-  // selectedOtdel: any = [];
   rasdels: any = [];
   podrasdels: any = [];
   gruppas: any = [];
@@ -25,6 +24,7 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
               @Inject(MAT_DIALOG_DATA) public data: any,
               private matDialog: MatDialog,
               private materialCatalogService: MaterialCatalogService,
+              private materialListService: MaterialListService,
               private themeService: NbThemeService) {
     this.themeService.changeTheme('default');
   }
@@ -46,8 +46,9 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
       console.error(error);
     });
   }
+
   getAllSubOtdels(mcCode: number, type: number) {
-    this.materialCatalogService.getAllSubOtdels(mcCode).subscribe( response => {
+    this.materialCatalogService.getAllSubOtdels(mcCode).subscribe(response => {
       switch (type) {
         case 1:
           this.rasdels = response;
@@ -64,7 +65,7 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
 
       }
       console.log(response);
-    })
+    });
   }
 
   closeDialog() {
@@ -162,5 +163,12 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
 
   submitMaterials() {
     console.log(this.materials);
+    console.log(this.data);
+    this.materials.forEach(element => {
+      element.report = { id: this.data.id};
+    });
+    this.materialListService.postMaterialsUseFilter(this.materials).subscribe( data => {
+      console.log(data);
+    });
   }
 }

@@ -29,7 +29,6 @@
           {{report.days}}
         </td>
       </ng-container>
-
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr class="report-row" (click)="test(row)" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>

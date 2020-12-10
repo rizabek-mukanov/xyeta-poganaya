@@ -3,8 +3,8 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/com
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {NbToastrService} from "@nebular/theme";
-import {ErrorCode} from "../models/error-code";
+import {NbToastrService} from '@nebular/theme';
+import {ErrorCode} from '../models/error-code';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {

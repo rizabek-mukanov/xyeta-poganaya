@@ -5,13 +5,13 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class MaterialService {
-  fullUrl = environment.apiUrl + '/api/material';
+export class MaterialListService {
+  fullUrl = environment.apiUrl + '/api/materialList';
 
   constructor(private http: HttpClient) {
   }
 
-  public getAllMaterials(id: any) {
-    return this.http.get<any>(this.fullUrl + '/owner?mtOwner=' + id);
+  public postMaterialsUseFilter(list: any) {
+    return this.http.post<any>(this.fullUrl + '/useFilter', list);
   }
 }

@@ -72,15 +72,17 @@ nb-card {
   margin-right: 5px;
   max-width: 220px;
   white-space: nowrap;
-  overflow: auto;
-  padding: 0.5rem;
+  text-transform: capitalize !important;
+  overflow: hidden;
+  padding: 0.5rem !important;
   //padding: 0.5rem 0.5rem;
 }
 //.button-height-div {
 //  max-height: 40px;
 //}
 .select-div {
-  max-width: 220px;
+  width: 200px;
+  max-width: 250px;
   margin-right: 5px;
 }
 

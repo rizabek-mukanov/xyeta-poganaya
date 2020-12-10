@@ -28,4 +28,17 @@ export class CategoryService {
       },
     });
   }
+
+  public addNewCategoryWithContractor(object: any) {
+    return this.http.post<any>(this.fullUrl + '/add/with/contractors', object);
+  }
+
+  public deleteCategory(id: number) {
+    return this.http.delete<any>(this.fullUrl + `/delete?id=${id}`);
+  }
+
+  public editCategory(object: any) {
+    return this.http.put<any>(this.fullUrl + '/update', object);
+
+  }
 }

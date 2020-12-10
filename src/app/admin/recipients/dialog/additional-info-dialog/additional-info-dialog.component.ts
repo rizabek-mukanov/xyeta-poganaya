@@ -14,6 +14,7 @@ import {CategoryService} from '../../../../@core/services/category.service';
 export class AdditionalInfoDialogComponent implements OnInit {
   contractors: any;
   displayedColumns: string[] = ['id', 'name', 'bin', 'email', 'phone', 'actions'];
+  editableCategory: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<AdditionalInfoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -41,12 +42,12 @@ export class AdditionalInfoDialogComponent implements OnInit {
 
   deleteCategory() {
     console.log(this.data);
-    console.log('delete me');
+    this.deleteRecipient(this.data, 'category');
   }
 
-  deleteRecipient(recipient: any) {
+  deleteRecipient(recipient: any, type: string) {
     const deleteDialog = this.matDialog.open(DeleteInfoDialogComponent, {
-      data: recipient,
+      data: {id: recipient.id, type: type},
       width: '300',
       panelClass: 'delete-recipient-dialog',
     });
@@ -61,10 +62,9 @@ export class AdditionalInfoDialogComponent implements OnInit {
       panelClass: 'additional-info-modal',
     });
     editDialog.afterClosed().subscribe(result => {
-      if (result !== 'close') {
+      if (typeof result === 'object') {
         this.getAllContractors();
       }
-      console.log(result);
     });
   }
 
@@ -79,5 +79,16 @@ export class AdditionalInfoDialogComponent implements OnInit {
       }
       console.log(result);
     });
+  }
+
+  editCategory() {
+    console.log(this.data);
+    this.categoryService.editCategory(this.data).subscribe( resp => {
+      console.log(resp);
+      this.editableCategory = false;
+    }, error => {
+      console.error(error);
+    });
+
   }
 }

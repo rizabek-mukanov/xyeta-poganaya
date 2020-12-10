@@ -16,10 +16,15 @@ table {
 .category-card-header {
   background-color: #e8f2fe;
   color: #02344f;
+  align-items: center;
+}
+.edit-category-btn {
+  cursor: pointer;
 }
 .category-card-body{
   padding: 0 !important;
 }
 [nbInput] {
-  color: black !important;
+  color: #000000 !important;
+  background-color: #ffffff;
 }

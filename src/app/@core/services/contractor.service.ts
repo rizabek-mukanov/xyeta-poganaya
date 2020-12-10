@@ -28,6 +28,10 @@ export class ContractorService {
     return this.http.post<any>(this.fullUrl + '/add', object);
   }
 
+  public updateContractor(object: any) {
+    return this.http.put<any>(this.fullUrl + '/update', object);
+  }
+
   // public deleteContractor(id: any) {
   //   return this.http.delete(this.fullUrl + `/delete`;
   //   });

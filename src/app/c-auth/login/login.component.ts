@@ -29,7 +29,7 @@ export class LoginComponent extends NbLoginComponent {
         this.loading = false;
       }).catch(error => {
       console.log(error);
-      this.errors.push(error.error.message);
+      this.errors.push(error);
       this.authService.authFail();
       this.loading = false;
     }).finally(() => this.loading = false);

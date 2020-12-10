@@ -74,7 +74,7 @@
       </div>
       <div class="border-left-custom">
         <div class="row mb-2">
-          <button (click)="submitMaterials()"  nbButton status="primary">Применить</button>
+          <button [disabled]="materials.length === 0" (click)="submitMaterials()"  nbButton status="primary">Применить</button>
         </div>
         <div class="row">
           <button nbButton outline status="primary" (click)="closeDialog()">Отменить</button>

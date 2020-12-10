@@ -9,12 +9,12 @@ import {NbToastrService} from '@nebular/theme';
   styleUrls: ['./add-info-dialog.component.scss'],
 })
 export class AddInfoDialogComponent implements OnInit {
-  company: any = {id: null, bin: '', email: '', contractorName: '', phoneNumber: ''};
+  company: any = {bin: '', email: '', contractorName: '', phoneNumber: ''};
 
   constructor(public dialogRef: MatDialogRef<AddInfoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private contractorService: ContractorService,
-              private tostService: NbToastrService) {
+              private toastService: NbToastrService) {
   }
 
   ngOnInit(): void {
@@ -28,20 +28,28 @@ export class AddInfoDialogComponent implements OnInit {
 
   newCompany() {
     if (typeof this.data === 'string') {
-      this.company.category = {categoryName: this.data,
-        description: ''};
+      this.dialogRef.close(this.company);
+      // this.company.category = {categoryName: this.data,
+      //   description: ''};
     } else if (typeof this.data === 'object') {
       this.company.category = this.data;
+      this.contractorService.addNewContractor(this.company).subscribe(data => {
+        this.toastService.success('Успешно!');
+        this.dialogRef.close(data);
+      }, error => {
+        this.toastService.danger('Ошибка!');
+        this.dialogRef.close('close');
+      });
     }
     console.log(this.company);
-    this.contractorService.addNewContractor(this.company).subscribe(data => {
-      console.log(data);
-      this.tostService.success('Успешно!');
-      this.dialogRef.close(data);
-    }, error => {
-      console.error(error);
-      this.tostService.danger('Ошибка!');
-      this.dialogRef.close('close');
-    });
+    // this.contractorService.addNewContractor(this.company).subscribe(data => {
+    //   console.log(data);
+    //   this.tostService.success('Успешно!');
+    //   this.dialogRef.close(data);
+    // }, error => {
+    //   console.error(error);
+    //   this.tostService.danger('Ошибка!');
+    //   this.dialogRef.close('close');
+    // });
   }
 }

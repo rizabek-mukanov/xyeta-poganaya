@@ -82,6 +82,9 @@ export class RecipientsComponent implements OnInit {
     });
     newCategoryDialog.afterClosed().subscribe(result => {
       console.log(result);
+      if (typeof result === 'object') {
+        this.getCategories();
+      }
     });
   }
 
