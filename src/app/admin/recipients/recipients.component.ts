@@ -4,6 +4,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {AdditionalInfoDialogComponent} from './dialog/additional-info-dialog/additional-info-dialog.component';
 import {NewCategoryDialogComponent} from './dialog/new-category-dialog/new-category-dialog.component';
 import {CategoryService} from '../../@core/services/category.service';
+import {ReportService} from '../../@core/services/report.service';
+import {NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'ngx-recipients',
@@ -18,7 +20,9 @@ export class RecipientsComponent implements OnInit {
   constructor(private activateRoute: ActivatedRoute,
               public matDialog: MatDialog,
               private router: Router,
-              private categoryService: CategoryService) {
+              private categoryService: CategoryService,
+              private reportService: ReportService,
+              private toastService: NbToastrService) {
     this.id = this.activateRoute.snapshot.params['id'];
   }
 
@@ -28,19 +32,14 @@ export class RecipientsComponent implements OnInit {
 
   async getCategories() {
     this.categoryService.getAll().subscribe(response => {
-      this.categories = response;
-      for (let i = 0; i <  this.categories.length; i++ ) {
-        if (this.chosenCategories.some(chosenCategory => chosenCategory.id ===  this.categories[i].id)) {
-          this.categories.splice(i, 1);
+      this.categories = [];
+
+      response.forEach(element => {
+        if (!this.chosenCategories.some(chosenCategory => chosenCategory.id === element.id)) {
+          this.categories.push(element);
         }
-      }
-      // response.forEach(element => {
-      //   if (this.chosenCategories.some(chosenCategory => chosenCategory.id === element.id)) {
-      //     console.log('я там есть');
-      //   } else {
-      //     this.categories.push(element);
-      //   }
-      // });
+      });
+      console.log(this.categories);
     }, error => {
       console.error(error);
     });
@@ -49,6 +48,7 @@ export class RecipientsComponent implements OnInit {
   async getChosenCategories() {
     this.categoryService.getByReportId(this.id).subscribe(async response => {
       this.chosenCategories = response;
+      console.log(this.chosenCategories);
       await this.getCategories();
     }, error => {
       console.error(error);
@@ -61,7 +61,7 @@ export class RecipientsComponent implements OnInit {
       panelClass: 'additional-info-modal',
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      this.getChosenCategories();
     });
   }
 
@@ -81,15 +81,22 @@ export class RecipientsComponent implements OnInit {
       panelClass: 'additional-info-modal',
     });
     newCategoryDialog.afterClosed().subscribe(result => {
-      console.log(result);
-      if (typeof result === 'object') {
         this.getCategories();
-      }
     });
   }
 
   saveAndReturn() {
-    console.log('save and return');
-    this.router.navigateByUrl(`/admin/report-settings/${this.id}`);
+    const categories = [];
+    this.chosenCategories.forEach(category => {
+      categories.push(category.id);
+    });
+    this.reportService.addCategoriesList(categories, this.id).subscribe(response => {
+      this.toastService.success('Категории успешно обновлены');
+      this.router.navigateByUrl(`/admin/report-settings/${this.id}`);
+    }, error => {
+      console.error(error);
+      this.toastService.danger('Ошибка при добавлении категории');
+    });
+    // this.router.navigateByUrl(`/admin/report-settings/${this.id}`);
   }
 }

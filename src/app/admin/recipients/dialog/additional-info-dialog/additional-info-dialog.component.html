@@ -26,10 +26,10 @@
       <nb-card-header class="category-card-header d-flex justify-content-between">
         <div>
           <div *ngIf="!editableCategory">
-            {{data.categoryName}}
+            {{data.name}}
           </div>
           <div *ngIf="editableCategory">
-            <input class="bg-white"  type="text" nbInput placeholder="Наименование категории" [(ngModel)]="data.categoryName">
+            <input class="bg-white"  type="text" nbInput placeholder="Наименование категории" [(ngModel)]="data.name">
           </div>
         </div>
         <div class="d-flex align-items-center">
@@ -52,7 +52,7 @@
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Наименование компании</th>
             <td mat-cell class="pr-3"
-                *matCellDef="let recipient">{{recipient.contractorName}}</td>
+                *matCellDef="let recipient">{{recipient.title}}</td>
           </ng-container>
           <ng-container matColumnDef="bin">
             <th mat-header-cell *matHeaderCellDef>БИН организации</th>
@@ -62,12 +62,12 @@
           <ng-container matColumnDef="email">
             <th mat-header-cell *matHeaderCellDef>Email</th>
             <td mat-cell class="pr-5"
-                *matCellDef="let recipient">{{recipient.email}}</td>
+                *matCellDef="let recipient">{{recipient.emailAddress}}</td>
           </ng-container>
           <ng-container matColumnDef="phone">
             <th mat-header-cell *matHeaderCellDef>Номер телефона</th>
             <td mat-cell class="pr-5"
-                *matCellDef="let recipient">{{recipient.phoneNumber}}</td>
+                *matCellDef="let recipient">{{recipient.contactPhone}}</td>
           </ng-container>
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef></th>

@@ -7,12 +7,12 @@
       <nb-icon icon="close-outline"></nb-icon>
     </button>
   </nb-card-header>
-<!--  <nb-card-header class="addition-info-header d-flex justify-content-between">-->
-<!--    Материалы-->
-<!--    <button (click)="closeDialog()" ghost nbButton>-->
-<!--      <nb-icon icon="close-outline"></nb-icon>-->
-<!--    </button>-->
-<!--  </nb-card-header>-->
+  <!--  <nb-card-header class="addition-info-header d-flex justify-content-between">-->
+  <!--    Материалы-->
+  <!--    <button (click)="closeDialog()" ghost nbButton>-->
+  <!--      <nb-icon icon="close-outline"></nb-icon>-->
+  <!--    </button>-->
+  <!--  </nb-card-header>-->
   <nb-card-body class="classifier-card-body">
     <div class="d-flex justify-content-center mb-5">
       <div class="d-flex w-50">
@@ -23,15 +23,6 @@
       </div>
     </div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <ng-container matColumnDef="select">
-        <th mat-header-cell *matHeaderCellDef>
-
-<!--          <nb-checkbox (checkedChange)="toggle($event)"></nb-checkbox>-->
-        </th>
-        <td mat-cell *matCellDef="let material">
-
-        </td>
-      </ng-container>
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>
           <mat-checkbox color="primary" (change)="$event ? masterToggle() : null"
@@ -39,7 +30,7 @@
                         [indeterminate]="selection.hasValue() && !isAllSelected()">
             Наименование материала
           </mat-checkbox>
-          </th>
+        </th>
         <td mat-cell class="pr-5"
             *matCellDef="let material">
           <mat-checkbox color="primary" (click)="$event.stopPropagation()"
@@ -47,7 +38,7 @@
                         [checked]="selection.isSelected(material)">
             {{material.mtName}}
           </mat-checkbox>
-          </td>
+        </td>
       </ng-container>
       <ng-container matColumnDef="code">
         <th mat-header-cell *matHeaderCellDef>Код</th>
@@ -60,7 +51,8 @@
             *matCellDef="let material">{{material.mtMeasure}}</td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr class="{{(selection.isSelected(row)) ? 'selected-row' : ''}}" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="{{(selection.isSelected(row)) ? 'selected-row' : ''}}" mat-row
+          *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </nb-card-body>
   <nb-card-footer class="d-flex justify-content-center">

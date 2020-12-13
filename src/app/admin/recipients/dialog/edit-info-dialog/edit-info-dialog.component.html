@@ -15,17 +15,37 @@
     </div>
     <div class="form-control-group mb-2">
       <label class="label" for="name">Наименование</label>
-      <input type="text" id="name" [(ngModel)]="company.contractorName" fullWidth nbInput
+      <input type="text" id="name" [(ngModel)]="company.title" fullWidth nbInput
              placeholder="Введите наименование">
     </div>
     <div class="form-control-group mb-2">
+      <label class="label" for="directorName">Имя директора</label>
+      <input type="text" id="directorName" [(ngModel)]="company.directorName" fullWidth nbInput
+             placeholder="Введите имя директора">
+    </div>
+    <div class="form-control-group mb-2">
+      <label class="label" for="directorPhone">Телефон директора</label>
+      <input type="text" id="directorPhone" [(ngModel)]="company.directorPhone" fullWidth nbInput
+             placeholder="Введите телефон директора">
+    </div>
+    <div class="form-control-group mb-2">
       <label class="label" for="email">Email</label>
-      <input type="text" id="email" [(ngModel)]="company.email" fullWidth nbInput
+      <input type="text" id="email" [(ngModel)]="company.emailAddress" fullWidth nbInput
              placeholder="Введите email">
+    </div>
+    <div class="form-control-group mb-2">
+      <label class="label" for="physicalAddress">Физический адресс</label>
+      <input type="text" id="physicalAddress" [(ngModel)]="company.physicalAddress" fullWidth nbInput
+             placeholder="Введите физический адресс">
+    </div>
+    <div class="form-control-group mb-2">
+      <label class="label" for="contactName">Контактное лицо</label>
+      <input type="text" id="contactName" [(ngModel)]="company.contactName" fullWidth nbInput
+             placeholder="Введите имя контакта">
     </div>
     <div class="form-control-group mb-5">
       <label class="label" for="phone">Телефон</label>
-      <input type="text" id="phone" [(ngModel)]="company.phoneNumber" fullWidth nbInput
+      <input type="text" id="phone" [(ngModel)]="company.contactPhone" fullWidth nbInput
              placeholder="Введите номер телефона">
     </div>
   </nb-card-body>

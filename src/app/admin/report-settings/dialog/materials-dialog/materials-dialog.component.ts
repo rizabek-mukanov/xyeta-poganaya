@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {MaterialService} from "../../../../@core/services/material.service";
-import {SelectionModel} from "@angular/cdk/collections";
-import {NbToastrService} from "@nebular/theme";
+import {MaterialService} from '../../../../@core/services/material.service';
+import {SelectionModel} from '@angular/cdk/collections';
+import {NbToastrService} from '@nebular/theme';
 
 class MyDataType {
 }
@@ -31,7 +31,7 @@ export class MaterialsDialogComponent implements OnInit {
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.length;
-    return numSelected == numRows;
+    return numSelected === numRows;
   }
 
   masterToggle() {
@@ -43,11 +43,11 @@ export class MaterialsDialogComponent implements OnInit {
   getAllMaterials(id: number) {
     this.materialService.getAllMaterials(id).subscribe(response => {
       this.dataSource = response;
-      this.dataSource.forEach(element => element.isSelected = true);
+      this.dataSource.forEach(element => element.isSelected = false);
       console.log(this.dataSource);
     }, error => {
       console.error(error);
-    })
+    });
   }
 
   closeDialog() {

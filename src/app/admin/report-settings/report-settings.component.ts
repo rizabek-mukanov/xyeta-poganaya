@@ -53,6 +53,7 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
     this.getExpirationTime();
     this.testSubscribe();
   }
+
   testSubscribe() {
 
     const handler = document.querySelector('.handler');
@@ -101,6 +102,7 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
     this.subscription2.unsubscribe();
     this.subscription3.unsubscribe();
   }
+
   readyTimeList() {
     for (let i = 0; i < 24; i++) {
       let hour;
@@ -140,6 +142,7 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
     }
     this.reportService.getById(this.id).subscribe(async data => {
       this.report = data;
+      console.log(data);
       this.pageLoaded = true;
       if (firstInit) {
         await this.divideTime();
@@ -158,6 +161,10 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
 
   changed() {
     this.isLoading = true;
+    this.updateRequest();
+  }
+
+  updateRequest() {
     this.reportService.updateReport(this.report).toPromise().then(response => {
       console.log(response);
       this.isLoading = false;
@@ -191,13 +198,7 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
     if (this.report) {
       this.report.timeOfPublication = `${this.reportHours}:${this.reportMinutes}`;
     }
-    this.reportService.updateReport(this.report).toPromise().then(resp => {
-      console.log(resp);
-      this.isLoading = false;
-    }).catch(error => {
-      this.getReportInfo(true);
-      this.isLoading = false;
-    }).finally(() => this.isLoading = false);
+    this.updateRequest();
     ref.close();
   }
 
@@ -219,4 +220,8 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
     this.page = pdfPage.pageNumber;
   }
 
+  updatePublicate(b: boolean) {
+    this.report.publicate = b;
+    this.updateRequest();
+  }
 }

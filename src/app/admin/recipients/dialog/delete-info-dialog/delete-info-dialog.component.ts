@@ -36,21 +36,30 @@ export class DeleteInfoDialogComponent implements OnInit {
   deleteCompany() {
     console.log(this.data);
     if (this.data.type === 'company') {
-      this.contractorService.deleteContractor(this.data).subscribe(data => {
-        console.log(data);
-        this.toastService.success('Успешно!');
+      this.data.element.categoryID = null;
+      console.log(this.data.element);
+      this.contractorService.updateContractor(this.data.element).subscribe( response => {
+          this.toastService.success('Успешно!');
+        this.dialogRef.close('close');
       }, error => {
-        console.error(error);
-        this.toastService.danger('Ошибка!');
+          this.toastService.danger('Ошибка!');
+        this.dialogRef.close('close');
       });
     } else if (this.data.type === 'category') {
-      this.categoryService.deleteCategory(this.data).subscribe(data => {
-        console.log(data);
-        this.toastService.success('Успешно!');
-      }, error => {
-        console.error(error);
-        this.toastService.danger('Ошибка!');
+      this.categoryService.deleteCategory(this.data.element.id).toPromise().then( response => {
+        console.log(response);
+        this.dialogRef.close('delete');
+      }).catch( error => {
+        console.log(error);
+        this.dialogRef.close('delete');
       });
+      // this.categoryService.deleteCategory(this.data.element.id).subscribe(data => {
+      //   console.log(data);
+      //   this.toastService.success('Успешно!');
+      // }, error => {
+      //   console.error(error);
+      //   this.toastService.danger('Ошибка!');
+      // });
     }
 
   }

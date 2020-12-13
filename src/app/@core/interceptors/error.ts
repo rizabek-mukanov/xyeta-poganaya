@@ -21,15 +21,18 @@ export class ErrorInterceptor implements HttpInterceptor {
       }
 
       if (err.status === 404) {
-        this.router.navigate(['/error/404']);
+        this.toastrService.warning('Ошибка 404');
+        // this.router.navigate(['/error/404']);
       }
 
       if (err.status === 403) {
-        this.router.navigate(['/error/403']);
+        this.toastrService.warning('Ошибка 403');
+        // this.router.navigate(['/error/403']);
       }
 
       if (err.status === 500) {
-        this.router.navigate(['/error/500']);
+        this.toastrService.warning('Ошибка 500');
+        // this.router.navigate(['/error/500']);
       }
 
       if (err.status === 400) {

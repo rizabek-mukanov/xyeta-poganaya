@@ -7,13 +7,13 @@ import {publicDecrypt} from 'crypto';
   providedIn: 'root',
 })
 export class ContractorService {
-  fullUrl = environment.apiUrl + '/api/contractor';
+  fullUrl = environment.apiUrl + '/api/companies';
 
   constructor(private http: HttpClient) {
   }
 
   public getAll() {
-    return this.http.get<any>(this.fullUrl + '/findAll');
+    return this.http.get<any>(this.fullUrl + '/all');
   }
 
   public getByCategoryId(id: any) {
@@ -36,9 +36,9 @@ export class ContractorService {
   //   return this.http.delete(this.fullUrl + `/delete`;
   //   });
   // }
-  public deleteContractor(id: number) {
-    return this.http.delete<any>(this.fullUrl + `/delete?id=${id}`);
-  }
+  // public deleteContractor(id: number) {
+  //   return this.http.delete<any>(this.fullUrl + `/delete?id=${id}`);
+  // }
 
 
   // public addNewContractor(object: any) {

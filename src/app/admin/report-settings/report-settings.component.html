@@ -50,9 +50,13 @@
         <button class="header-buttons" [routerLink]="'/admin/recipients/' + report.id" nbButton>Получатели</button>
       </div>
       <div>
-        <button class="header-buttons" *ngIf="report.isSending" nbButton status='danger'>Остановить публикацию
+        <button class="header-buttons" *ngIf="report.publicate" (click)="updatePublicate(false)" nbButton
+                status='danger'>
+          Остановить публикацию
         </button>
-        <button class="header-buttons" *ngIf="!report.isSending" nbButton status="primary">Восстановить публикацию
+        <button class="header-buttons" *ngIf="!report.publicate" (click)="updatePublicate(true)" nbButton
+                status="primary">
+          Восстановить публикацию
         </button>
       </div>
 

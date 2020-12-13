@@ -2,7 +2,7 @@ import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {MaterialsDialogComponent} from '../materials-dialog/materials-dialog.component';
 import {MaterialCatalogService} from '../../../../@core/services/material-catalog.service';
-import {NbThemeService} from '@nebular/theme';
+import {NbThemeService, NbToastrService} from '@nebular/theme';
 import {MaterialListService} from '../../../../@core/services/material-list.service';
 
 @Component({
@@ -25,7 +25,8 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
               private matDialog: MatDialog,
               private materialCatalogService: MaterialCatalogService,
               private materialListService: MaterialListService,
-              private themeService: NbThemeService) {
+              private themeService: NbThemeService,
+              private toastService: NbToastrService) {
     this.themeService.changeTheme('default');
   }
 
@@ -94,8 +95,6 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
   }
 
   removeFromList(material: any, i: number) {
-    console.log(i);
-    console.log(material);
     this.materials.splice(i, 1);
   }
 
@@ -164,11 +163,18 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
   submitMaterials() {
     console.log(this.materials);
     console.log(this.data);
+    const reportMateiralsList = [];
     this.materials.forEach(element => {
-      element.report = { id: this.data.id};
+      const object = {id: element.id, mtCode: element.mtCode, reportId: this.data.id};
+      reportMateiralsList.push(object);
     });
-    this.materialListService.postMaterialsUseFilter(this.materials).subscribe( data => {
+    this.materialListService.postMaterialsUseFilter(reportMateiralsList).subscribe(data => {
       console.log(data);
+      this.toastService.success('Материалы добавлены успешно!');
+      this.dialogRef.close(data);
+    }, error => {
+      this.toastService.danger('Ошибка при добавлении');
+      console.error(error);
     });
   }
 }

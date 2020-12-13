@@ -17,7 +17,7 @@ export class ReportService {
   }
 
   public getById(id: any) {
-    return this.http.get<any>(this.fullUrl + '/findId', {
+    return this.http.get<any>(this.fullUrl, {
       params: {
         id,
       },
@@ -41,4 +41,7 @@ export class ReportService {
   //     },
   //   });
   // }
+  addCategoriesList(categories: any[], id: number) {
+    return this.http.put<any>(this.fullUrl + `/update/categoryList?id=${id}`, categories);
+  }
 }

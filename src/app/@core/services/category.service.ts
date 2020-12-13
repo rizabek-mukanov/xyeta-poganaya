@@ -6,11 +6,11 @@ import {environment} from '../../../environments/environment';
   providedIn: 'root',
 })
 export class CategoryService {
-  fullUrl = environment.apiUrl + '/api/category';
+  fullUrl = environment.apiUrl + '/api/categories';
 
   constructor(private http: HttpClient) { }
   public getAll() {
-    return this.http.get<any>(this.fullUrl + '/findAll');
+    return this.http.get<any>(this.fullUrl + '/all');
   }
 
   public getById(id: any) {
@@ -40,5 +40,9 @@ export class CategoryService {
   public editCategory(object: any) {
     return this.http.put<any>(this.fullUrl + '/update', object);
 
+  }
+
+  addNew(category: any) {
+    return this.http.post<any>(this.fullUrl + '/add', category);
   }
 }

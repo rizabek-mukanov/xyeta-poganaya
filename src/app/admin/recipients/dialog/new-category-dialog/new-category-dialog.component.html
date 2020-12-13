@@ -16,6 +16,7 @@
       <table class="table">
         <thead>
         <tr>
+          <th scope="col">ID компании</th>
           <th scope="col">Наименование компании</th>
           <th scope="col">БИН организации</th>
           <th scope="col">Email</th>
@@ -25,10 +26,11 @@
         </thead>
         <tbody>
         <tr *ngFor="let reciever of receivers; let i = index">
-          <td>{{reciever.contractorName}}</td>
+          <td>{{reciever.id}}</td>
+          <td>{{reciever.title}}</td>
           <td>{{reciever.bin}}</td>
-          <td>{{reciever.email}}</td>
-          <td>{{reciever.phoneNumber}}</td>
+          <td>{{reciever.emailAddress}}</td>
+          <td>{{reciever.contactPhone}}</td>
           <td style="padding: 0.2rem;">
             <button (click)="deleteRecipient(reciever, i)" nbButton ghost status="danger">
               <nb-icon icon="close"></nb-icon>
@@ -37,41 +39,8 @@
         </tr>
         </tbody>
       </table>
-      <!--      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">-->
-      <!--        <ng-container matColumnDef="name">-->
-      <!--          <th mat-header-cell *matHeaderCellDef>Наименование компании</th>-->
-      <!--          <td mat-cell class="pr-4"-->
-      <!--              *matCellDef="let recipient">{{recipient.contractorName}}</td>-->
-      <!--        </ng-container>-->
-      <!--        <ng-container matColumnDef="bin">-->
-      <!--          <th mat-header-cell *matHeaderCellDef>БИН организации</th>-->
-      <!--          <td mat-cell class="pr-4"-->
-      <!--              *matCellDef="let recipient">{{recipient.bin}}</td>-->
-      <!--        </ng-container>-->
-      <!--        <ng-container matColumnDef="email">-->
-      <!--          <th mat-header-cell *matHeaderCellDef>Email</th>-->
-      <!--          <td mat-cell class="pr-4"-->
-      <!--              *matCellDef="let recipient">{{recipient.email}}</td>-->
-      <!--        </ng-container>-->
-      <!--        <ng-container matColumnDef="phone">-->
-      <!--          <th mat-header-cell *matHeaderCellDef>Номер телефона</th>-->
-      <!--          <td mat-cell class="pr-4"-->
-      <!--              *matCellDef="let recipient">{{recipient.phoneNumber}}</td>-->
-      <!--        </ng-container>-->
-      <!--        <ng-container matColumnDef="actions">-->
-      <!--          <th mat-header-cell *matHeaderCellDef></th>-->
-      <!--          <td mat-cell-->
-      <!--              *matCellDef="let recipient; let i = index">-->
-      <!--            <button (click)="deleteRecipient(recipient, i)" nbButton ghost status="danger">-->
-      <!--              <nb-icon icon="close"></nb-icon>-->
-      <!--            </button>-->
-      <!--          </td>-->
-      <!--        </ng-container>-->
-      <!--        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
-      <!--        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-      <!--      </table>-->
     </div>
-    <div class="center-test">
+    <div class="center-test" *ngIf="receivers.length === 0">
       <div class="square-div">
         <div class="row text-div-center p-3">
           Для создания категории необходимо добавить <br> одну или несколько компаний

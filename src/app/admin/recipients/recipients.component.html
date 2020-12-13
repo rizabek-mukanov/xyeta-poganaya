@@ -12,11 +12,11 @@
         <div class="overflow-auto">
           <nb-list>
             <nb-list-item *ngFor="let i = index; let category of categories">
-              <button nbButton class="mr-2">
-                <nb-icon icon="info-outline" (click)="goToInfo(category)"></nb-icon>
+              <button (click)="goToInfo(category)" nbButton class="mr-2">
+                <nb-icon icon="info-outline" ></nb-icon>
               </button>
               <button nbButton (click)="addToChosen(category, i)" ghost class="w-100">
-                {{ category?.categoryName }}
+                {{ category?.name }}
               </button>
             </nb-list-item>
           </nb-list>
@@ -27,11 +27,11 @@
         <h3>Выбранные категории : {{chosenCategories.length}}</h3>
         <nb-list>
           <nb-list-item *ngFor="let i = index; let chosenCategories of chosenCategories">
-            <button nbButton class="mr-2">
-              <nb-icon icon="info-outline" (click)="goToInfo(chosenCategories)"></nb-icon>
+            <button (click)="goToInfo(chosenCategories)" nbButton class="mr-2">
+              <nb-icon icon="info-outline" ></nb-icon>
             </button>
             <button nbButton class="w-100" ghost>
-              {{ chosenCategories?.categoryName }}
+              {{ chosenCategories?.name }}
             </button>
             <button nbButton (click)="deleteChosen(chosenCategories, i)"><nb-icon icon="trash-outline"></nb-icon></button>
           </nb-list-item>

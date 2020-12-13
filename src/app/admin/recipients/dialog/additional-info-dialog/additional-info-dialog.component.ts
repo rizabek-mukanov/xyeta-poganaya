@@ -47,12 +47,17 @@ export class AdditionalInfoDialogComponent implements OnInit {
 
   deleteRecipient(recipient: any, type: string) {
     const deleteDialog = this.matDialog.open(DeleteInfoDialogComponent, {
-      data: {id: recipient.id, type: type},
+      data: {element: recipient, type: type},
       width: '300',
       panelClass: 'delete-recipient-dialog',
     });
     deleteDialog.afterClosed().subscribe(result => {
       console.log(result);
+      if (result === 'delete') {
+        this.closeDialog();
+      } else {
+        this.getAllContractors();
+      }
     });
   }
 
@@ -62,22 +67,17 @@ export class AdditionalInfoDialogComponent implements OnInit {
       panelClass: 'additional-info-modal',
     });
     editDialog.afterClosed().subscribe(result => {
-      if (typeof result === 'object') {
         this.getAllContractors();
-      }
     });
   }
 
   addNewRecipient() {
     const addInfoDialog = this.matDialog.open(AddInfoDialogComponent, {
       panelClass: 'additional-info-modal',
-      data: this.data,
+      data: {element: this.data, type: 'exists'},
     });
     addInfoDialog.afterClosed().subscribe(result => {
-      if (typeof result === 'object') {
         this.getAllContractors();
-      }
-      console.log(result);
     });
   }
 

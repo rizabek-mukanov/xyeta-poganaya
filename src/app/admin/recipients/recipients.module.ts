@@ -14,23 +14,25 @@ import { NewCategoryDialogComponent } from './dialog/new-category-dialog/new-cat
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
   declarations: [RecipientsComponent, AdditionalInfoDialogComponent, EditInfoDialogComponent, AddInfoDialogComponent, DeleteInfoDialogComponent, NewCategoryDialogComponent],
-  imports: [
-    CommonModule,
-    RecipientsRoutingModule,
-    NbCardModule,
-    NbButtonModule,
-    NbIconModule,
-    NbListModule,
-    MatDialogModule,
-    NbInputModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-  ],
+    imports: [
+        CommonModule,
+        RecipientsRoutingModule,
+        NbCardModule,
+        NbButtonModule,
+        NbIconModule,
+        NbListModule,
+        MatDialogModule,
+        NbInputModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatCheckboxModule,
+    ],
 })
 export class RecipientsModule { }

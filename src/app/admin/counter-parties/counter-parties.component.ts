@@ -4,7 +4,6 @@ import {NbDialogService} from '@nebular/theme';
 import {MatDialog} from '@angular/material/dialog';
 import {AdditionalInfoMatDialogComponent} from './dialog/additional-info-mat-dialog/additional-info-mat-dialog.component';
 import {ActivatedRoute} from '@angular/router';
-import {ReportSettingsComponent} from './dialog/report-settings/report-settings.component';
 import {PublicationsService} from '../../@core/services/publications.service';
 
 @Component({
@@ -74,17 +73,6 @@ export class CounterPartiesComponent implements OnInit {
 
   changed(report: any) {
     console.log(report);
-  }
-
-  openReportSettingsDialog() {
-    this.dialogService.open(ReportSettingsComponent, {
-      context: {
-        id: this.id,
-      },
-      dialogClass: 'report-settings-modal',
-    }).onClose.subscribe(response => {
-      console.log(response);
-    });
   }
 
   // openReportSettingsDialog2() {

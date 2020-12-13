@@ -8,13 +8,11 @@ import {MatTableModule} from '@angular/material/table';
 import {FormsModule} from '@angular/forms';
 import {AdditionalInfoMatDialogComponent} from './dialog/additional-info-mat-dialog/additional-info-mat-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import {ReportSettingsComponent} from './dialog/report-settings/report-settings.component';
 
 
 @NgModule({
   declarations: [CounterPartiesComponent,
     AdditionalInfoMatDialogComponent,
-    ReportSettingsComponent,
   ],
   imports: [
     CommonModule,
