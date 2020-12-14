@@ -3,7 +3,7 @@
     <div class="d-flex w-100 align-items-center justify-content-center">
       Добавление компании для {{data.element.name}}
     </div>
-    <button (click)="closeDialog()" ghost nbButton>
+    <button (click)="closeDialog('close')" ghost nbButton>
       <nb-icon icon="close-outline"></nb-icon>
     </button>
   </nb-card-header>
@@ -48,6 +48,6 @@
   </nb-card-body>
   <nb-card-footer class="d-flex justify-content-center">
     <button class="mr-3" (click)="newCompany()"  nbButton status="primary">Добавить</button>
-    <button nbButton (click)="closeDialog()" >Отменить</button>
+    <button nbButton (click)="closeDialog('close')" >Отменить</button>
   </nb-card-footer>
 </nb-card>

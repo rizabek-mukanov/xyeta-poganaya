@@ -65,6 +65,7 @@ export class CounterPartiesComponent implements OnInit {
     const dialogRef = this.matDialog.open(AdditionalInfoMatDialogComponent, {
       data: this.id,
       panelClass: 'additional-info-modal',
+      width: '80vw',
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);

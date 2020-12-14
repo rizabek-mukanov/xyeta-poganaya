@@ -65,6 +65,7 @@ export class AdditionalInfoDialogComponent implements OnInit {
     const editDialog = this.matDialog.open(EditInfoDialogComponent, {
       data: recipient,
       panelClass: 'additional-info-modal',
+      width: '60vw',
     });
     editDialog.afterClosed().subscribe(result => {
         this.getAllContractors();
@@ -75,6 +76,7 @@ export class AdditionalInfoDialogComponent implements OnInit {
     const addInfoDialog = this.matDialog.open(AddInfoDialogComponent, {
       panelClass: 'additional-info-modal',
       data: {element: this.data, type: 'exists'},
+      width: '60vw',
     });
     addInfoDialog.afterClosed().subscribe(result => {
         this.getAllContractors();

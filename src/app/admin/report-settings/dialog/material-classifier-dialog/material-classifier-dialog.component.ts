@@ -84,6 +84,7 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
       data: this.chosenMaterial,
       panelClass: 'additional-info-modal',
       height: '90vh',
+      width: '80vw',
     });
     dialogRef.afterClosed().subscribe(result => {
       if (typeof result === 'object') {

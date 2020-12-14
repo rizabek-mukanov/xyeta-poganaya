@@ -94,6 +94,7 @@ export class NewCategoryDialogComponent implements OnInit {
       const addInfoDialog = this.matDialog.open(AddInfoDialogComponent, {
         panelClass: 'additional-info-modal',
         data: {element: response, type: 'new'},
+        width: '70vw',
       });
       addInfoDialog.afterClosed().subscribe(result => {
         if (typeof result === 'object') {

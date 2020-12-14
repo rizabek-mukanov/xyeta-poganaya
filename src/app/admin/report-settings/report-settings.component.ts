@@ -179,7 +179,8 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
       data: report,
       panelClass: 'additional-info-modal',
       backdropClass: 'material-classifier-dialog-class',
-      height: '90vw',
+      height: '90vh',
+      width: '90vw',
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);

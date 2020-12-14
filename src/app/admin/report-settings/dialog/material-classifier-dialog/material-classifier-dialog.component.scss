@@ -76,10 +76,14 @@ nb-card {
   text-overflow: ellipsis;
   text-transform: capitalize !important;
   padding: 0.1rem !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
   border-right: 0 !important;
 }
 .remove-material-icon {
   border-left: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
   padding: 0.1rem !important;
 }
 .button-height-div {

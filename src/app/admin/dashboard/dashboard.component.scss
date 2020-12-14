@@ -28,6 +28,12 @@ table {
   cursor: pointer;
 }
 
+table {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none;
+}
+
 //.mat-dialog-container, nb-dialog-container {
 //  background: nb-theme(background-basic-color-1);
 //  & .mat-table {

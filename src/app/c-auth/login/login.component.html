@@ -55,18 +55,10 @@
            fieldSize="large"
            [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
            [required]="getConfigValue('forms.validation.password.required')"
-           [minlength]="getConfigValue('forms.validation.password.minLength')"
-           [maxlength]="getConfigValue('forms.validation.password.maxLength')"
            [attr.aria-invalid]="password.invalid && password.touched ? true : null">
     <ng-container *ngIf="password.invalid && password.touched ">
       <p class="caption status-danger" *ngIf="password.errors?.required">
-        Необходимо ввсети пароль!
-      </p>
-      <p class="caption status-danger" *ngIf="password.errors?.minlength || password.errors?.maxlength">
-        Пароль должен содержать
-        от {{ getConfigValue('forms.validation.password.minLength') }}
-<!--        до {{ getConfigValue('forms.validation.password.maxLength') }}-->
-        символов
+        Необходимо ввести пароль!
       </p>
     </ng-container>
   </div>

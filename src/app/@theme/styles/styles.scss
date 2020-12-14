@@ -33,44 +33,9 @@
   @include nb-overrides();
 }
 
-;
-.additional-info-modal {
-  width: 2000px;
-}
-
-.delete-recipient-dialog {
-  background-color: white;
-}
-
-//.mat-dialog-container, nb-dialog-container {
-//  background: nb-theme(background-basic-color-1);
-//  //& .mat-table {
-//  //  background-color: nb-theme(background-basic-color-1);
-//  //  & .mat-header-cell, & .mat-cell {
-//  //    color: nb-theme(text-basic-color);
-//  //  }
-//  //}
-//  //.table {
-//  //  background: nb-theme(background-basic-color-1);
-//  //  & td {
-//  //    color: nb-theme(text-basic-color);
-//  //  }
-//  //}
-//}
-@media (max-width: 532px) {
-  .report-settings-modal {
-    max-width: 100% !important;
-  }
-}
-
 .material-classifier-dialog-class {
   background-color: #222b45;
 }
-
-nb-dialog-container {
-  width: 100%;
-}
-
-table {
-  width: 100%;
+.mat-dialog-container {
+  padding: 0 !important;
 }
