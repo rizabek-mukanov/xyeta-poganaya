@@ -13,7 +13,7 @@ export class TinyMCEComponent implements OnDestroy, AfterViewInit {
 
   constructor(
     private host: ElementRef,
-    private locationStrategy: LocationStrategy,
+    private locationStrategy: LocationStrategy
   ) { }
 
   ngAfterViewInit() {

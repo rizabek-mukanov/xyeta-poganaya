@@ -23,7 +23,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {PdfViewComponent} from './pdf-module/pdf-view/pdf-view.component';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {MatIconModule} from '@angular/material/icon';
-import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
