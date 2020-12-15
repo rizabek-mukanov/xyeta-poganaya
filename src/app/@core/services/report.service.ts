@@ -24,6 +24,10 @@ export class ReportService {
     });
   }
 
+  // public getPdfPath(id: any) {
+  //   return
+  // }
+
   public updateReport(report: any) {
     return this.http.put<any>(this.fullUrl + '/update', report);
   }

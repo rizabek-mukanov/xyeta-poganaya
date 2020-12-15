@@ -1,21 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
-
 // themes - our custom or/and out of the box themes
 @import 'themes';
-
 // framework component themes (styles tied to theme variables)
 @import '~@nebular/theme/styles/globals';
 @import '~@nebular/auth/styles/all';
-
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
 @import '~bootstrap/scss/grid';
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
 // loading progress bar theme
 @import './pace.theme';
-
 @import './layout';
 @import './overrides';
 
@@ -36,6 +31,11 @@
 .material-classifier-dialog-class {
   background-color: #222b45;
 }
+
 .mat-dialog-container {
   padding: 0 !important;
+}
+
+:root {
+  font-family: Roboto !important;
 }

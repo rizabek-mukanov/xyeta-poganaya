@@ -29,7 +29,7 @@
     <th mat-header-cell *matHeaderCellDef>Кому отправлен</th>
     <td mat-cell
         *matCellDef="let report">{{(report.receivers.length === 1) ?
-      report.receivers[0] :
+      report.receivers[0].title :
       report.receivers.length + ' получателей'}}
       <br>
       <a class="watch-list" (click)="openAdditionInfoMatDialog(report)"

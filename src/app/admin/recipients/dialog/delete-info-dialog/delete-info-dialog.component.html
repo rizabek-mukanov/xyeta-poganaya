@@ -1,10 +1,11 @@
-<h4 mat-dialog-title class="d-flex justify-content-between">
+<h4 mat-dialog-title class="d-flex header-class justify-content-between align-items-center">
   Удаление {{type?.first}}
   <button (click)="closeDialog()" ghost nbButton>
     <nb-icon icon="close-outline"></nb-icon>
   </button>
 </h4>
-<div mat-dialog-content>
+<hr>
+<div mat-dialog-content class="main-delete-div">
   <div class="d-flex justify-content-center">
     <svg width="89" height="99" viewBox="0 0 59 69" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M7.2294 0.0196838H51.7706C55.7461 0.0196838 59 3.27057 59 7.24231V51.7418C59 55.7135 55.7461 58.9644 51.7706 58.9644H38.7171L34.8973 63.1152L29.4976 68.9809L24.1027 63.1152L20.2782 58.9644H7.2294C3.25394 58.9644 0 55.7135 0 51.7418V7.24231C0 3.27057 3.25394 0.0196838 7.2294 0.0196838V0.0196838Z" fill="#EB5757"/>

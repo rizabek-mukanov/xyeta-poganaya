@@ -15,7 +15,7 @@ import {ReportService} from '../../@core/services/report.service';
 export class CounterPartiesComponent implements OnInit {
   dataSource: any;
   displayedColumns: string[] = ['image', 'createdAt', 'sendAt', 'status', 'receivers', 'autoSend', 'sendBtn'];
-  fileUrl = environment.imageUrl;
+  fileUrl = 'assets/pdf.jpeg';
   id: number;
   report: any;
   constructor(private dialogService: NbDialogService,

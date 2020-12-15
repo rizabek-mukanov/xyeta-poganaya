@@ -7,7 +7,7 @@ import {
     NbButtonModule,
     NbCardModule, NbCheckboxModule,
     NbIconModule,
-    NbInputModule,
+    NbInputModule, NbListModule,
     NbSelectModule, NbSpinnerModule,
     NbToggleModule, NbTooltipModule,
 } from '@nebular/theme';
@@ -54,6 +54,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
         MatCheckboxModule,
         NbCheckboxModule,
         NbTooltipModule,
+        NbListModule,
     ],
   exports: [
     PdfViewComponent,
