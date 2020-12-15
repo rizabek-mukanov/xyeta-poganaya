@@ -26,7 +26,13 @@
   ::ng-deep nb-search button {
     padding: 0!important;
   }
-
+  nb-icon {
+    color: #6BCCF9 !important;
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    margin-right: 30px;
+  }
   .header-container {
     display: flex;
     align-items: center;

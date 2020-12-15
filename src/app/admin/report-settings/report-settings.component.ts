@@ -30,15 +30,6 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
   subscription3: Subscription;
   isHandlerDragging: boolean = false;
 
-  // daysList: any = [
-  //   {generate: 'generateInMonday', dayStr: 'ПН', isTrue: 'false'},
-  //   {generate: 'generateInTuesday', dayStr: 'ВТ', isTrue: 'false'},
-  //   {generate: 'generateInWednesday', dayStr: 'СР', isTrue: 'false'},
-  //   {generate: 'generateInThursday', dayStr: 'ЧТ', isTrue: 'false'},
-  //   {generate: 'generateInFriday', dayStr: 'ПТ', isTrue: 'false'},
-  //   {generate: 'generateInSaturday', dayStr: 'СБ', isTrue: 'false'},
-  //   {generate: 'generateInSunday', dayStr: 'ВС', isTrue: 'false'},
-  // ];
 
   constructor(private activateRoute: ActivatedRoute,
               private dialogService: NbDialogService,

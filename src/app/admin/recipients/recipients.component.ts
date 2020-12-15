@@ -32,13 +32,13 @@ export class RecipientsComponent implements OnInit {
 
   async getCategories() {
     this.categoryService.getAll().subscribe(response => {
-      this.categories = [];
-
-      response.forEach(element => {
-        if (!this.chosenCategories.some(chosenCategory => chosenCategory.id === element.id)) {
-          this.categories.push(element);
-        }
-      });
+      this.categories = response;
+      //
+      // response.forEach(element => {
+      //   if (!this.chosenCategories.some(chosenCategory => chosenCategory.id === element.id)) {
+      //     this.categories.push(element);
+      //   }
+      // });
       console.log(this.categories);
     }, error => {
       console.error(error);
@@ -68,11 +68,11 @@ export class RecipientsComponent implements OnInit {
 
   deleteChosen(chosenCategory: any, i: any) {
     this.chosenCategories.splice(i, 1);
-    this.categories.push(chosenCategory);
+    // this.categories.push(chosenCategory);
   }
 
   addToChosen(category: any, i: any) {
-    this.categories.splice(i, 1);
+    // this.categories.splice(i, 1);
     this.chosenCategories.push(category);
   }
 

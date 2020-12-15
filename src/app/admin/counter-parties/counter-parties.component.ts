@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {AdditionalInfoMatDialogComponent} from './dialog/additional-info-mat-dialog/additional-info-mat-dialog.component';
 import {ActivatedRoute} from '@angular/router';
 import {PublicationsService} from '../../@core/services/publications.service';
+import {ReportService} from '../../@core/services/report.service';
 
 @Component({
   selector: 'ngx-counter-parties',
@@ -17,11 +18,11 @@ export class CounterPartiesComponent implements OnInit {
   fileUrl = environment.imageUrl;
   id: number;
   report: any;
-
   constructor(private dialogService: NbDialogService,
               public matDialog: MatDialog,
               private activateRoute: ActivatedRoute,
-              private publicationsService: PublicationsService) {
+              private publicationsService: PublicationsService,
+              private reportService: ReportService) {
     this.id = this.activateRoute.snapshot.params['id'];
   }
 
@@ -29,6 +30,7 @@ export class CounterPartiesComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.id);
     this.getPublications();
+    this.getReport();
     // this.dataSource = [
     //   {
     //     id: 1,
@@ -50,9 +52,13 @@ export class CounterPartiesComponent implements OnInit {
     //   }];
   }
 
+  getReport() {
+    this.reportService.getById(this.id).subscribe( data => {
+      this.report = data;
+    });
+  }
   getPublications() {
     this.publicationsService.getById(this.id).subscribe(response => {
-      this.report = response;
       console.log(response);
       this.dataSource = response;
     }, error => {
@@ -86,4 +92,11 @@ export class CounterPartiesComponent implements OnInit {
   //     console.log(result);
   //   });
   // }
+  sendPublication(report: any) {
+    this.publicationsService.sendEmailToCompanies(report.id).subscribe(response => {
+      console.log(response);
+    }, error => {
+      console.error(error);
+    });
+  }
 }

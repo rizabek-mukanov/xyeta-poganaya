@@ -8,7 +8,7 @@
   <nb-card-body>
     <div class="d-flex justify-content-center mb-5">
       <div class="d-flex w-50">
-        <input class="bg-white" fullWidth nbInput placeholder="Поиск">
+        <input class="bg-white" status="basic" fullWidth nbInput placeholder="Поиск">
         <button nbButton>
           <nb-icon icon="search-outline"></nb-icon>
         </button>
@@ -29,7 +29,7 @@
             {{data.name}}
           </div>
           <div *ngIf="editableCategory">
-            <input class="bg-white"  type="text" nbInput placeholder="Наименование категории" [(ngModel)]="data.name">
+            <input class="bg-white" status="basic"  type="text" nbInput placeholder="Наименование категории" [(ngModel)]="data.name">
           </div>
         </div>
         <div class="d-flex align-items-center">

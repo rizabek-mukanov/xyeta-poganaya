@@ -1,12 +1,13 @@
 <div class="d-flex mb-3 justify-content-between">
-  Заголовок
+  <h3>{{report?.name}}</h3>
   <button nbButton status="success" [routerLink]="'/admin'">Назад</button>
 </div>
 <table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="image">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let report">
-      <img src="{{fileUrl + '/' + report.imageUrl}}" alt="" class="table-image">
+<!--      TODO FILE PATH-->
+      <img src="{{fileUrl }}" alt="" class="table-image">
     </td>
   </ng-container>
   <ng-container matColumnDef="createdAt">
@@ -48,7 +49,7 @@
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let report">
       <div *ngIf="report.status === 'PUBLISHED' && !report.autoSending">
-        <button nbButton size="small" status="primary">Отправить</button>
+        <button nbButton (click)="sendPublication(report)" size="small" status="primary">Отправить</button>
       </div>
     </td>
   </ng-container>
