@@ -4,7 +4,7 @@ import { NbDialogService } from '@nebular/theme';
 import { MatDialog } from '@angular/material/dialog';
 import { MaterialClassifierDialogComponent } from './dialog/material-classifier-dialog/material-classifier-dialog.component';
 import { ReportService } from '../../@core/services/report.service';
-import { fromEvent, interval, Subscription } from 'rxjs';
+import { interval } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -12,7 +12,7 @@ import { environment } from '../../../environments/environment';
     templateUrl: './report-settings.component.html',
     styleUrls: ['./report-settings.component.scss'],
 })
-export class ReportSettingsComponent implements OnInit, OnDestroy {
+export class ReportSettingsComponent implements OnInit {
     id: number;
     report: any;
     reportHours: any;
@@ -26,12 +26,6 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
     pdfPagesList: any = [];
     isLoading = false;
     expirationTime: any;
-    expirationTimeDate: any;
-    subscription: Subscription;
-    subscription2: Subscription;
-    subscription3: Subscription;
-    isHandlerDragging: boolean = false;
-
 
     constructor(private activateRoute: ActivatedRoute,
                 private dialogService: NbDialogService,
@@ -44,74 +38,7 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
         this.readyTimeList();
         this.getReportInfo(true);
         this.getExpirationTime();
-        // this.testSubscribe();
-    }
-
-    // testSubscrive() {
-    //     const resizer = document.getElementById('dragMe');
-    //     const leftSide = resizer.previousElementSibling;
-    //     const rightSide = resizer.nextElementSibling;
-    //     let x = 0;
-    //     let y = 0;
-    //     let leftWidth = 0;
-    //     const mouseDownHandler = function(e) {
-    //         // Get the current mouse position
-    //         x = e.clientX;
-    //         y = e.clientY;
-    //         leftWidth = leftSide.getBoundingClientRect().width;
-    //
-    //         // Attach the listeners to `document`
-    //         document.addEventListener('mousemove', mouseMoveHandler);
-    //         document.addEventListener('mouseup', mouseUpHandler);
-    //     };
-    // }
-
-    // testSubscribe() {
-    //
-    //     const handler = document.querySelector('.handler');
-    //     const wrapper = handler.closest('.wrapper');
-    //     const boxA = wrapper.querySelector('.box');
-    //
-    //     this.subscription =
-    //         fromEvent(document, 'mousemove')
-    //             .subscribe(e => {
-    //                 if (!this.isHandlerDragging) {
-    //                     return false;
-    //                 }
-    //
-    //                 // @ts-ignore
-    //                 const containerOffsetLeft = wrapper.offsetLeft;
-    //
-    //                 // @ts-ignore
-    //                 const pointerRelativeXpos = e.clientX - containerOffsetLeft;
-    //
-    //                 // Arbitrary minimum width set on box A, otherwise its inner content will collapse to width of 0
-    //                 const boxAminWidth = 60;
-    //
-    //                 // Resize box A
-    //                 // * 8px is the left/right spacing between .handler and its inner pseudo-element
-    //                 // * Set flex-grow to 0 to prevent it from growing
-    //                 // @ts-ignore
-    //                 boxA.style.width = (Math.max(boxAminWidth, pointerRelativeXpos - 1)) + 'px';
-    //                 // @ts-ignore
-    //                 boxA.style.flexGrow = 0;
-    //             });
-    //     this.subscription2 =
-    //         fromEvent(document, 'mousedown')
-    //             .subscribe(e => {
-    //                 this.isHandlerDragging = e.target === handler;
-    //             });
-    //     this.subscription3 =
-    //         fromEvent(document, 'mouseup').subscribe(data => {
-    //             this.isHandlerDragging = false;
-    //         });
-    // }
-
-
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-        this.subscription2.unsubscribe();
-        this.subscription3.unsubscribe();
+        this.getFileInfo();
     }
 
     readyTimeList() {
@@ -163,6 +90,18 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
         });
     }
 
+    getFileInfo() {
+        this.reportService.getPdfPath(this.id).toPromise().then(response => {
+            console.log(response);
+            this.pdfSrc = environment.apiUrl + '/api/pdf/' + response.fileName;
+        }).catch(err => console.error(err));
+        // this.reportService.getPdfPath(this.id).subscribe( data => {
+        //     console.log(data);
+        //     this.pdfSrc = environment.apiUrl + '/api/pdf/' + data;
+        // }, error => {
+        //     console.error(error);
+        // });
+    }
 
     getReportInfo(firstInit?: boolean) {
         if (!firstInit) {
@@ -171,7 +110,6 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
         this.reportService.getById(this.id).subscribe(async data => {
             this.report = data;
             console.log(data);
-            // this.pdfSrc = environment.apiUrl + '/api/pdf/' + data.fileName;
             // this.pdfSrc = 'http://localhost:9090/api/pdf/pdf-18-44-46.pdf';
             this.pageLoaded = true;
             if (firstInit) {
@@ -241,7 +179,9 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
 
     afterLoadComplete(pdf: any) {
         this.pdf = pdf;
-        for (let i = 1; i < pdf.numPages; i++) {
+        console.log(pdf);
+        console.log(pdf.numPages);
+        for (let i = 1; i <= pdf.numPages; i++) {
             const pageObject = {pageNumber: i};
             this.pdfPagesList.push(pageObject);
         }

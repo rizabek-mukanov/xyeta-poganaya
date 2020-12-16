@@ -11,7 +11,7 @@ div {
   width: 700px;
 }
 nb-card.main-card {
-  height: 89vh;
+  height: 85vh;
 }
 .chose-time-card {
   width: 200px;
@@ -67,12 +67,7 @@ span.page-number {
   cursor: pointer;
   flex: 0 0 auto;
 }
-.resizer {
-  background-color: #cbd5e0;
-  cursor: ew-resize;
-  height: 100%;
-  width: 2px;
-}
+
 
 .handler::before {
   content: '';
