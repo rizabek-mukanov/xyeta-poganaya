@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MaterialClassifierDialogComponent } from './dialog/material-classifier-dialog/material-classifier-dialog.component';
 import { ReportService } from '../../@core/services/report.service';
 import { fromEvent, interval, Subscription } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'ngx-report-settings',
@@ -43,54 +44,68 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
         this.readyTimeList();
         this.getReportInfo(true);
         this.getExpirationTime();
-        this.testSubscribe();
+        // this.testSubscribe();
     }
 
-    getPdfPath() {
-        // this.reportService.getById()
-    }
+    // testSubscrive() {
+    //     const resizer = document.getElementById('dragMe');
+    //     const leftSide = resizer.previousElementSibling;
+    //     const rightSide = resizer.nextElementSibling;
+    //     let x = 0;
+    //     let y = 0;
+    //     let leftWidth = 0;
+    //     const mouseDownHandler = function(e) {
+    //         // Get the current mouse position
+    //         x = e.clientX;
+    //         y = e.clientY;
+    //         leftWidth = leftSide.getBoundingClientRect().width;
+    //
+    //         // Attach the listeners to `document`
+    //         document.addEventListener('mousemove', mouseMoveHandler);
+    //         document.addEventListener('mouseup', mouseUpHandler);
+    //     };
+    // }
 
-    testSubscribe() {
-
-        const handler = document.querySelector('.handler');
-        const wrapper = handler.closest('.wrapper');
-        const boxA = wrapper.querySelector('.box');
-        this.subscription =
-            fromEvent(document, 'mousemove')
-                .subscribe(e => {
-                    if (!this.isHandlerDragging) {
-                        return false;
-                    }
-                    // @ts-ignore
-                    const containerOffsetLeft = wrapper.offsetLeft;
-
-                    // Get x-coordinate of pointer relative to container
-                    // @ts-ignore
-                    const pointerRelativeXpos = e.clientX - containerOffsetLeft;
-
-                    // Arbitrary minimum width set on box A, otherwise its inner content will collapse to width of 0
-                    const boxAminWidth = 60;
-
-                    // Resize box A
-                    // * 8px is the left/right spacing between .handler and its inner pseudo-element
-                    // * Set flex-grow to 0 to prevent it from growing
-                    // @ts-ignore
-                    boxA.style.width = (Math.max(boxAminWidth, pointerRelativeXpos - 1)) + 'px';
-                    console.log(boxA);
-                    console.log(boxA);
-                    // @ts-ignore
-                    boxA.style.flexGrow = 0;
-                });
-        this.subscription2 =
-            fromEvent(document, 'mousedown')
-                .subscribe(e => {
-                    this.isHandlerDragging = e.target === handler;
-                });
-        this.subscription3 =
-            fromEvent(document, 'mouseup').subscribe(data => {
-                this.isHandlerDragging = false;
-            });
-    }
+    // testSubscribe() {
+    //
+    //     const handler = document.querySelector('.handler');
+    //     const wrapper = handler.closest('.wrapper');
+    //     const boxA = wrapper.querySelector('.box');
+    //
+    //     this.subscription =
+    //         fromEvent(document, 'mousemove')
+    //             .subscribe(e => {
+    //                 if (!this.isHandlerDragging) {
+    //                     return false;
+    //                 }
+    //
+    //                 // @ts-ignore
+    //                 const containerOffsetLeft = wrapper.offsetLeft;
+    //
+    //                 // @ts-ignore
+    //                 const pointerRelativeXpos = e.clientX - containerOffsetLeft;
+    //
+    //                 // Arbitrary minimum width set on box A, otherwise its inner content will collapse to width of 0
+    //                 const boxAminWidth = 60;
+    //
+    //                 // Resize box A
+    //                 // * 8px is the left/right spacing between .handler and its inner pseudo-element
+    //                 // * Set flex-grow to 0 to prevent it from growing
+    //                 // @ts-ignore
+    //                 boxA.style.width = (Math.max(boxAminWidth, pointerRelativeXpos - 1)) + 'px';
+    //                 // @ts-ignore
+    //                 boxA.style.flexGrow = 0;
+    //             });
+    //     this.subscription2 =
+    //         fromEvent(document, 'mousedown')
+    //             .subscribe(e => {
+    //                 this.isHandlerDragging = e.target === handler;
+    //             });
+    //     this.subscription3 =
+    //         fromEvent(document, 'mouseup').subscribe(data => {
+    //             this.isHandlerDragging = false;
+    //         });
+    // }
 
 
     ngOnDestroy() {
@@ -126,7 +141,7 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
             // data = {second: 10, minute: 30, hour: 23, day: 1};
             this.expirationTime = data;
             if (data.second < 0 || data.minute < 0 || data.hour < 0 || data.day < 0) {
-                this.expirationTime = {day: 0, hour: 0, minute: 0, second: 0};
+                this.expirationTime = {day: '00', hour: '00', minute: '00', second: '00'};
             } else {
                 const date = new Date();
                 date.setDate(data.day);
@@ -156,6 +171,8 @@ export class ReportSettingsComponent implements OnInit, OnDestroy {
         this.reportService.getById(this.id).subscribe(async data => {
             this.report = data;
             console.log(data);
+            // this.pdfSrc = environment.apiUrl + '/api/pdf/' + data.fileName;
+            // this.pdfSrc = 'http://localhost:9090/api/pdf/pdf-18-44-46.pdf';
             this.pageLoaded = true;
             if (firstInit) {
                 await this.divideTime();

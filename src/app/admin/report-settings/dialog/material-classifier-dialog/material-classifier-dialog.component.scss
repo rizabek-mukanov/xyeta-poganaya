@@ -76,10 +76,14 @@ nb-card {
   overflow: hidden !important;
   text-overflow: ellipsis;
   text-transform: capitalize !important;
-  padding: 0.1rem !important;
+  padding: 0.3rem !important;
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
   border-right: 0 !important;
+  color: rgba(24, 39, 58, 0.94) !important;
+  font-weight: normal !important;
+  border-color: #2179DB !important;
+  background-color:  rgba(255, 255, 255, 0.7) !important;
 }
 
 .remove-material-icon {
@@ -87,6 +91,8 @@ nb-card {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
   padding: 0.1rem !important;
+  color: #9a9b9c !important;
+  background-color:  rgba(255, 255, 255, 0.7) !important;
 }
 
 .button-height-div {
@@ -109,33 +115,42 @@ nb-card {
   margin-bottom: 5px !important;
   padding: 0.5rem 0.9rem !important;
 }
+
 .count-number {
   color: #2F80ED;
   font-weight: 600;
 }
+
 .otdel-name {
   color: rgba(24, 39, 58, 0.94);
   font-family: Roboto !important;
 }
+
 .otdel-list-item {
   cursor: pointer;
   border-bottom: 0.5px solid #979EA5 !important;
 }
+
 .list-card-body {
   padding: 0;
 }
+
 .card-list {
   max-height: 80vh !important;
 }
+
 .otdel-list-item.selected {
   background: #e8f2fe;
 }
+
 nb-card {
   border: none;
 }
+
 .materials-button {
   max-height: 40px;
 }
+
 nb-icon {
   //color: #6BCCF9 !important;
   //cursor: pointer;

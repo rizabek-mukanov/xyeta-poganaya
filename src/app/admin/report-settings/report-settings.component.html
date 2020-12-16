@@ -32,16 +32,19 @@
 						<br>
 						Дней
 					</div>
+					<span class="dots-span">:</span>
 					<div>
 						<button nbButton>{{expirationTime?.hour}}</button>
 						<br>
 						Часов
 					</div>
+					<span class="dots-span">:</span>
 					<div>
 						<button nbButton>{{expirationTime?.minute}}</button>
 						<br>
 						Минут
 					</div>
+					<span class="dots-span">:</span>
 					<div>
 						<button nbButton>{{expirationTime?.second}}</button>
 						<br>
@@ -111,7 +114,7 @@
 				></pdf-viewer>
 			</div>
 			<div class="handler"></div>
-			<div class="boxB" style="width: 40%">
+			<div class="box" style="width: 40%">
 				<div class="row d-flex justify-content-between">
 					<div class="page-col-class" *ngFor="let pdfPage of pdfPagesList">
 						<pdf-viewer [src]="pdfSrc"
@@ -184,3 +187,15 @@
 	</nb-card>
 </ng-template>
 
+
+<hr>
+<hr><br>
+<nb-card>
+	<div class="p-16">
+		<div class="border d-flex justify-content-between border-gray-400 h-64 w-full flex">
+			<div class="flex items-center justify-center w-2/3">Left</div>
+			<div class="resizer" id="dragMe"></div>
+			<div class="flex items-center justify-center flex-1">Right</div>
+		</div>
+	</div>
+</nb-card>

@@ -13,12 +13,12 @@
   <ng-container matColumnDef="createdAt">
     <th mat-header-cell *matHeaderCellDef>Дата и время публикации</th>
     <td class="row-{{(report.status === 'SENT') ? 'success': ''}}" mat-cell
-        *matCellDef="let report">{{report.createdAt}}</td>
+        *matCellDef="let report">{{report.createdAt | date:'dMMMy H:mm'}}</td>
   </ng-container>
   <ng-container matColumnDef="sendAt">
     <th mat-header-cell *matHeaderCellDef>Дата и время отправки</th>
     <td class="row-{{(report.status === 'SENT') ? 'success': 'waiting'}}" mat-cell
-        *matCellDef="let report">{{report.publicationDate}}</td>
+        *matCellDef="let report">{{report.publicationDate | date:'dMMMy H:mm'}}</td>
   </ng-container>
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef>Статус</th>

@@ -10,10 +10,10 @@
 
 export const environment = {
   production: false,
-  // apiUrl: 'http://10.111.2.141:8080',
+  apiUrl: 'http://192.168.1.36:8080',
   // apiUrl: 'http://82.200.167.74:9090',
-  apiUrl: 'http://localhost:9090',
-  imageUrl: 'http://api.smartplaza.kz/partners/api/file/logo/logo_1586937214547.jpg',
+  // apiUrl: 'http://localhost:9090',
+  imageUrl: '',
   tokenPrefix: 'Bearer ',
   apiToken: 'apiToken',
   userName: 'userName',
