@@ -71,14 +71,15 @@ export class ReportSettingsComponent implements OnInit {
                 this.expirationTime = {day: '00', hour: '00', minute: '00', second: '00'};
             } else {
                 const date = new Date();
-                date.setDate(data.day);
+                date.setUTCDate(data.day);
                 date.setHours(data.hour);
                 date.setMinutes(data.minute);
                 date.setSeconds(data.second);
+                console.log(date);
                 interval(1000).subscribe(() => {
                     date.setSeconds(date.getSeconds() - 1);
                     this.expirationTime = {
-                        day: date.getDate(),
+                        day: date.getUTCDate(),
                         hour: date.getHours(),
                         minute: date.getMinutes(),
                         second: date.getSeconds(),
