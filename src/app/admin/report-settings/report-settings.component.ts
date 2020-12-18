@@ -64,26 +64,33 @@ export class ReportSettingsComponent implements OnInit {
 
     getExpirationTime() {
         this.reportService.getExpirationTime(this.id).subscribe(data => {
-            console.log(data);
-            // data = {second: 10, minute: 30, hour: 23, day: 1};
             this.expirationTime = data;
             if (data.second < 0 || data.minute < 0 || data.hour < 0 || data.day < 0) {
                 this.expirationTime = {day: '00', hour: '00', minute: '00', second: '00'};
             } else {
                 const date = new Date();
-                date.setUTCDate(data.day);
+                date.setDate(date.getDate() + data.day);
                 date.setHours(data.hour);
                 date.setMinutes(data.minute);
                 date.setSeconds(data.second);
-                console.log(date);
                 interval(1000).subscribe(() => {
                     date.setSeconds(date.getSeconds() - 1);
-                    this.expirationTime = {
-                        day: date.getUTCDate(),
-                        hour: date.getHours(),
-                        minute: date.getMinutes(),
-                        second: date.getSeconds(),
-                    };
+                    if (date.getDate() < new Date().getDate()) {
+                        this.expirationTime = {
+                            day: '00',
+                            hour: '00',
+                            minute: '00',
+                            second: '00',
+                        };
+                    } else {
+                        this.expirationTime = {
+                            day: date.getDate() - new Date().getDate(),
+                            hour: date.getHours(),
+                            minute: date.getMinutes(),
+                            second: date.getSeconds(),
+                        };
+                    }
+
                 });
             }
         }, error => {

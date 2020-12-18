@@ -25,7 +25,7 @@ export class MaterialsDialogComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.data);
-    this.getAllMaterials(this.data.mcCode);
+    this.getAllMaterials(this.data.chosenMaterial.mcCode);
   }
 
   isAllSelected() {
@@ -42,8 +42,17 @@ export class MaterialsDialogComponent implements OnInit {
 
   getAllMaterials(id: number) {
     this.materialService.getAllMaterials(id).subscribe(response => {
+      console.log(this.data.materials);
+      console.log(response);
       this.dataSource = response;
-      this.dataSource.forEach(element => element.isSelected = false);
+      console.log(this.selection);
+      this.data.materials.forEach( material => {
+        this.dataSource.forEach(element => {
+          if (material.mtCode === element.mtCode) {
+            this.selection.select(element);
+          }
+        });
+      });
       console.log(this.dataSource);
     }, error => {
       console.error(error);

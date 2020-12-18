@@ -134,6 +134,9 @@ nb-card {
 .list-card-body {
   padding: 0;
 }
+.classifier-card-body {
+  margin-right: 10px;
+}
 
 .card-list {
   max-height: 80vh !important;
@@ -148,7 +151,10 @@ nb-card {
 }
 
 .materials-button {
-  max-height: 40px;
+  //max-height: 40px;
+  height: 31px;
+  /* width: 284px; */
+  min-width: 135px;
 }
 
 nb-icon {

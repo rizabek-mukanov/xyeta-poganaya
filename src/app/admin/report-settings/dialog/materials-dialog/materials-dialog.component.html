@@ -35,7 +35,8 @@
             *matCellDef="let material">
           <mat-checkbox color="primary" (click)="$event.stopPropagation()"
                         (change)="$event ? this.selection.toggle(material) : null"
-                        [checked]="selection.isSelected(material)">
+                        [checked]="selection.isSelected(material)"
+                        >
             {{material.mtName}}
           </mat-checkbox>
         </td>

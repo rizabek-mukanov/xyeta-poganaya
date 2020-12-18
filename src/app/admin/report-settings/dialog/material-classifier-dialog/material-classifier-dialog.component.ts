@@ -12,7 +12,6 @@ import { MaterialListService } from '../../../../@core/services/material-list.se
 })
 export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
     otdels: any;
-    totalCount: number = 0;
     rasdels: any = [];
     podrasdels: any = [];
     gruppas: any = [];
@@ -36,6 +35,14 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         console.log(this.data);
         this.getAllOtdels();
+        this.getAllMaterials();
+    }
+
+    getAllMaterials() {
+        this.materialListService.getAll().subscribe(data => {
+            console.log(data);
+            this.materials = data;
+        });
     }
 
     ngOnDestroy() {
@@ -73,7 +80,7 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
     }
 
     closeDialog() {
-        this.materials = [];
+        // this.materials = [];
         this.dialogRef.close('SALAM');
     }
 
@@ -83,18 +90,22 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
     }
 
     openMaterialsDialog() {
+        console.log(this.chosenMaterial);
         const dialogRef = this.matDialog.open(MaterialsDialogComponent, {
-            data: this.chosenMaterial,
+            data: {chosenMaterial: this.chosenMaterial, materials: this.materials},
             panelClass: 'additional-info-modal',
             height: '90vh',
             width: '80vw',
         });
         dialogRef.afterClosed().subscribe(result => {
             if (typeof result === 'object') {
-                this.materials = result;
+                result.forEach(element => {
+                    this.materials.push(element);
+                });
+                const ids = this.materials.map(el => el.mtCode);
+                this.materials = this.materials.filter(({mtCode}, index) => !ids.includes(mtCode, index + 1));
             } else if (typeof result === 'string') {
             }
-            console.log(result);
         });
     }
 
@@ -103,82 +114,78 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
     }
 
     changeOtdel(event: any) {
-        this.otdels.forEach( element => {
+        this.otdels.forEach(element => {
             element.isSelected = false;
         });
         event.isSelected = true;
-            this.totalCount = event.mcCount;
-            this.rasdels = [];
-            this.podrasdels = [];
-            this.gruppas = [];
-            this.podgruppas = [];
-            this.chosenMaterial = null;
-            this.getAllSubOtdels(event.mcCode, 1);
+        this.rasdels = [];
+        this.podrasdels = [];
+        this.gruppas = [];
+        this.podgruppas = [];
+        this.chosenMaterial = null;
+        this.getAllSubOtdels(event.mcCode, 1);
     }
 
 
     changeRasdel(event: any) {
-        this.rasdels.forEach( element => {
+        this.rasdels.forEach(element => {
             element.isSelected = false;
         });
         event.isSelected = true;
-            this.totalCount = event.mcCount;
-            this.podrasdels = [];
-            this.gruppas = [];
-            this.podgruppas = [];
-            this.chosenMaterial = null;
-            this.getAllSubOtdels(event.mcCode, 2);
+        this.podrasdels = [];
+        this.gruppas = [];
+        this.podgruppas = [];
+        this.chosenMaterial = null;
+        this.getAllSubOtdels(event.mcCode, 2);
     }
 
     changePodrazdel(event: any) {
-        this.podrasdels.forEach( element => {
+        this.podrasdels.forEach(element => {
             element.isSelected = false;
         });
         event.isSelected = true;
-            this.totalCount = event.mcCount;
-            this.gruppas = [];
-            this.podgruppas = [];
-            this.chosenMaterial = null;
-            this.getAllSubOtdels(event.mcCode, 3);
+        this.gruppas = [];
+        this.podgruppas = [];
+        this.chosenMaterial = null;
+        this.getAllSubOtdels(event.mcCode, 3);
     }
 
     changeGruppa(event: any) {
-        this.gruppas.forEach( element => {
+        this.gruppas.forEach(element => {
             element.isSelected = false;
         });
         event.isSelected = true;
-            this.podgruppas = [];
-            this.chosenMaterial = null;
-            this.totalCount = event.mcCount;
-            this.getAllSubOtdels(event.mcCode, 4);
+        this.podgruppas = [];
+        this.chosenMaterial = null;
+        this.getAllSubOtdels(event.mcCode, 4);
 
     }
 
     changePodgruppa(event: any) {
-        this.podgruppas.forEach( element => {
+        this.podgruppas.forEach(element => {
             element.isSelected = false;
         });
         event.isSelected = true;
-            this.totalCount = event.mcCount;
-            console.log(event);
-            this.chosenMaterial = event;
+        console.log(event);
+        this.chosenMaterial = event;
     }
 
     submitMaterials() {
-        console.log(this.materials);
-        console.log(this.data);
-        const reportMateiralsList = [];
-        this.materials.forEach(element => {
-            const object = {id: element.id, mtCode: element.mtCode, reportId: this.data.id};
-            reportMateiralsList.push(object);
-        });
-        this.materialListService.postMaterialsUseFilter(reportMateiralsList).subscribe(data => {
-            console.log(data);
-            this.toastService.success('Материалы добавлены успешно!');
-            this.dialogRef.close(data);
-        }, error => {
-            this.toastService.danger('Ошибка при добавлении');
-            console.error(error);
-        });
+        if (this.materials.length !== 10) {
+            this.toastService.warning('Количество материалов должно быть равно 10');
+        } else {
+            const reportMateiralsList = [];
+            this.materials.forEach(element => {
+                const object = {mtCode: element.mtCode, reportId: this.data.id};
+                reportMateiralsList.push(object);
+            });
+            this.materialListService.postMaterialsUseFilter(reportMateiralsList).subscribe(data => {
+                this.toastService.success('Материалы добавлены успешно!');
+                this.dialogRef.close(data);
+            }, error => {
+                this.toastService.danger('Ошибка при добавлении');
+                console.error(error);
+            });
+        }
     }
 }
