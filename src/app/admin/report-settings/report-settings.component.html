@@ -68,9 +68,9 @@
 					Восстановить публикацию
 				</button>
 			</div>
-		
+
 		</div>
-	
+
 	</nb-card-header>
 	<nb-card-body>
 		<as-split direction="horizontal">
@@ -94,7 +94,7 @@
 						            [zoom]="0.2"
 						            style="display: block;"
 						></pdf-viewer>
-						
+
 						<span class="page-number">{{pdfPage.pageNumber}}</span>
 					</div>
 				</div>
@@ -144,42 +144,43 @@
 				</button>
 			</div>
 			<div class="row justify-content-between">
-				<nb-select [(ngModel)]="reportHours">
-					<nb-option *ngFor="let hour of hoursList" value="{{hour}}">{{hour}}</nb-option>
-				</nb-select>
-				<span class="d-flex align-items-center">:</span>
-				<nb-select [(ngModel)]="reportMinutes">
-					<nb-option *ngFor="let minute of minutesList" value="{{minute}}">{{minute}}</nb-option>
-				</nb-select>
-				
-				<button *ngIf="report.generateInMonday" (click)="report.generateInMonday = false" nbButton status="primary">ПН
+        <div class="d-flex">
+          <nb-select [(ngModel)]="reportHours">
+            <nb-option *ngFor="let hour of hoursList" value="{{hour}}">{{hour}}</nb-option>
+          </nb-select>
+          <span class="d-flex align-items-center">:</span>
+          <nb-select [(ngModel)]="reportMinutes">
+            <nb-option *ngFor="let minute of minutesList" value="{{minute}}">{{minute}}</nb-option>
+          </nb-select>
+        </div>
+				<button *ngIf="report.generateInMonday" (click)="report.generateInMonday = false" nbButton class="day-chosen-btn" status="primary">ПН
 				</button>
-				<button *ngIf="!report.generateInMonday" (click)="report.generateInMonday = true" nbButton>ПН</button>
-				<button *ngIf="report.generateInTuesday" (click)="report.generateInTuesday = false" nbButton status="primary">ВТ
+				<button *ngIf="!report.generateInMonday" (click)="report.generateInMonday = true" class="day-chosen-btn" nbButton>ПН</button>
+				<button *ngIf="report.generateInTuesday" (click)="report.generateInTuesday = false" nbButton class="day-chosen-btn" status="primary">ВТ
 				</button>
-				<button *ngIf="!report.generateInTuesday" (click)="report.generateInTuesday = true" nbButton>ВТ</button>
-				<button *ngIf="report.generateInWednesday" (click)="report.generateInWednesday = false" nbButton
+				<button *ngIf="!report.generateInTuesday" (click)="report.generateInTuesday = true" class="day-chosen-btn" nbButton>ВТ</button>
+				<button *ngIf="report.generateInWednesday" (click)="report.generateInWednesday = false" class="day-chosen-btn" nbButton
 				        status="primary">СР
 				</button>
-				<button *ngIf="!report.generateInWednesday" (click)="report.generateInWednesday = true" nbButton>СР</button>
-				<button *ngIf="report.generateInThursday" (click)="report.generateInThursday = false" nbButton status="primary">
+				<button *ngIf="!report.generateInWednesday" (click)="report.generateInWednesday = true" class="day-chosen-btn" nbButton>СР</button>
+				<button *ngIf="report.generateInThursday" (click)="report.generateInThursday = false" class="day-chosen-btn" nbButton status="primary">
 					ЧТ
 				</button>
-				<button *ngIf="!report.generateInThursday" (click)="report.generateInThursday = true" nbButton>ЧТ</button>
-				<button *ngIf="report.generateInFriday" (click)="report.generateInFriday = false" nbButton status="primary">ПТ
+				<button *ngIf="!report.generateInThursday" (click)="report.generateInThursday = true" class="day-chosen-btn" nbButton>ЧТ</button>
+				<button *ngIf="report.generateInFriday" (click)="report.generateInFriday = false" class="day-chosen-btn" nbButton status="primary">ПТ
 				</button>
-				<button *ngIf="!report.generateInFriday" (click)="report.generateInFriday = true" nbButton>ПТ</button>
-				<button *ngIf="report.generateInSaturday" (click)="report.generateInSaturday = false" nbButton status="primary">
+				<button *ngIf="!report.generateInFriday" (click)="report.generateInFriday = true" class="day-chosen-btn" nbButton>ПТ</button>
+				<button *ngIf="report.generateInSaturday" (click)="report.generateInSaturday = false" class="day-chosen-btn" nbButton status="primary">
 					СБ
 				</button>
-				<button *ngIf="!report.generateInSaturday" (click)="report.generateInSaturday = true" nbButton>СБ</button>
-				<button *ngIf="report.generateInSunday" (click)="report.generateInSunday = false" nbButton status="primary">ВС
+				<button *ngIf="!report.generateInSaturday" (click)="report.generateInSaturday = true" class="day-chosen-btn" nbButton>СБ</button>
+				<button *ngIf="report.generateInSunday" (click)="report.generateInSunday = false" class="day-chosen-btn" nbButton status="primary">ВС
 				</button>
-				<button *ngIf="!report.generateInSunday" (click)="report.generateInSunday = true" nbButton>ВС</button>
+				<button *ngIf="!report.generateInSunday" (click)="report.generateInSunday = true" class="day-chosen-btn" nbButton>ВС</button>
 			</div>
 		</nb-card-body>
-		<nb-card-footer class="d-flex justify-content-around">
-			<button nbButton (click)="changeGenerateDays(ref)" status="primary">Применить</button>
+		<nb-card-footer class="d-flex justify-content-center">
+			<button nbButton (click)="changeGenerateDays(ref)" class="mr-5" status="primary">Применить</button>
 			<button nbButton (click)="cancelTime(ref)">Отменить</button>
 		</nb-card-footer>
 	</nb-card>

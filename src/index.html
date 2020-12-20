@@ -1,167 +1,201 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Stroy Mart</title>
-	
-	<base href="/">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" href="favicon.png">
-	<link rel="icon" type="image/x-icon" href="favicon.ico">
-	<script defer
-	        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpVhQiwAllg1RAFaxMWSpQruuGARy0Y1k&libraries=places"></script>
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<style>
-		html {
-			font-family: Roboto !important;
-		}
-		
-		table {
-			background-color: transparent !important;
-			border: none !important;
-			box-shadow: none !important;
-			width: 100%;
-		}
-		
-		button {
-			text-transform: capitalize !important;
-		}
-		
-		button.appearance-filled.status-primary {
-			background: #2179DB !important;
-			box-shadow: none !important;
-			border-radius: 0 !important;
-			color: white !important;
-		}
-		button.appearance-filled.status-primary[disabled] {
-			background-color: rgba(143, 155, 179, 0.24) !important;
-			border-color: rgba(143, 155, 179, 0.24) !important;
-			color: rgba(143, 155, 179, 0.48) !important;
-		}
-		
-		button.appearance-filled.status-basic {
-			border-radius: 0 !important;
-		}
+  <meta charset="utf-8">
+  <title>Stroy Mart</title>
 
-		
-		nb-layout-column > nb-card > nb-card-header {
-			display: none !important;
-		}
-		.as-split-gutter {
-			background:  #3b3e4f !important;
-			border-radius: 24px !important;
-		}
-		
-		button.appearance-filled.status-danger {
-			background: #DE1111 !important;
-		}
-		
-		button.appearance-outline.status-danger {
-			color: #DE1111 !important;
-		}
-		
-		.mat-dialog-container {
-			border-radius: 0 !important;
-		}
-		
-		nb-card {
-			border-radius: 0 !important;
-			margin-bottom: 0 !important;
-		}
-		
-		nb-card-header {
-			border-radius: 0 !important;
-		}
-	</style>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <script defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpVhQiwAllg1RAFaxMWSpQruuGARy0Y1k&libraries=places"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    html {
+      font-family: Roboto !important;
+    }
+
+    table {
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      width: 100%;
+    }
+
+    button {
+      text-transform: capitalize !important;
+    }
+
+    button.appearance-filled.status-primary {
+      background: #2179DB !important;
+      box-shadow: none !important;
+      border-radius: 0 !important;
+      color: white !important;
+    }
+
+    button.appearance-filled.status-primary[disabled] {
+      background-color: rgba(143, 155, 179, 0.24) !important;
+      border-color: rgba(143, 155, 179, 0.24) !important;
+      color: rgba(143, 155, 179, 0.48) !important;
+    }
+
+    button.appearance-filled.status-basic {
+      border-radius: 0 !important;
+    }
+
+
+    nb-layout-column > nb-card > nb-card-header {
+      display: none !important;
+    }
+
+    .as-split-gutter {
+      background: #3b3e4f !important;
+      border-radius: 24px !important;
+    }
+
+    button.appearance-filled.status-danger {
+      background: #DE1111 !important;
+    }
+
+    button.appearance-outline.status-danger {
+      color: #DE1111 !important;
+    }
+
+    .mat-dialog-container {
+      border-radius: 0 !important;
+    }
+
+    nb-card {
+      border-radius: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    nb-card-header {
+      border-radius: 0 !important;
+    }
+  </style>
 </head>
 <body>
 <ngx-app>Loading...</ngx-app>
 
 <style>@-webkit-keyframes spin {
-	       0% {
-		       transform: rotate(0)
-	       }
-	       100% {
-		       transform: rotate(360deg)
-	       }
+         0% {
+           transform: rotate(0)
+         }
+         100% {
+           transform: rotate(360deg)
+         }
        }
 
 @-moz-keyframes spin {
-	0% {
-		-moz-transform: rotate(0)
-	}
-	100% {
-		-moz-transform: rotate(360deg)
-	}
+  0% {
+    -moz-transform: rotate(0)
+  }
+  100% {
+    -moz-transform: rotate(360deg)
+  }
 }
 
 @keyframes spin {
-	0% {
-		transform: rotate(0)
-	}
-	100% {
-		transform: rotate(360deg)
-	}
+  0% {
+    transform: rotate(0)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
 }
 
 .spinner {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1003;
-	background: #000000;
-	overflow: hidden
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1003;
+  background: #000000;
+  overflow: hidden
 }
 
 .spinner div:first-child {
-	display: block;
-	position: relative;
-	left: 50%;
-	top: 50%;
-	width: 150px;
-	height: 150px;
-	margin: -75px 0 0 -75px;
-	border-radius: 50%;
-	box-shadow: 0 3px 3px 0 rgba(255, 56, 106, 1);
-	transform: translate3d(0, 0, 0);
-	animation: spin 2s linear infinite
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border-radius: 50%;
+  box-shadow: 0 3px 3px 0 rgba(255, 56, 106, 1);
+  transform: translate3d(0, 0, 0);
+  animation: spin 2s linear infinite
 }
 
+button.select-button {
+  background: #ffffff !important;
+  color: #17151C !important;
+  min-width: 0 !important;
+  width: 10px !important;
+}
+button.select-button > nb-icon {
+  display: none;
+}
+button.appearance-ghost.icon-start.icon-end.nb-transition {
+  border: none;
+}
 .spinner div:first-child:after, .spinner div:first-child:before {
-	content: '';
-	position: absolute;
-	border-radius: 50%
+  content: '';
+  position: absolute;
+  border-radius: 50%
+}
+
+button.day-chosen-btn.appearance-filled.status-primary {
+  background: #FFFFFF !important;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 2px !important;
+  border: none !important;
+  color: #17151C !important;
+}
+
+button.day-chosen-btn.appearance-filled {
+  background: #242632 !important;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 2px !important;
+  color: white !important;
+  border: none !important;
+}
+
+nb-select.select-button {
+  min-width: 0px !important;
 }
 
 .spinner div:first-child:before {
-	top: 5px;
-	left: 5px;
-	right: 5px;
-	bottom: 5px;
-	box-shadow: 0 3px 3px 0 rgb(255, 228, 32);
-	-webkit-animation: spin 3s linear infinite;
-	animation: spin 3s linear infinite
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  box-shadow: 0 3px 3px 0 rgb(255, 228, 32);
+  -webkit-animation: spin 3s linear infinite;
+  animation: spin 3s linear infinite
 }
 
 .spinner div:first-child:after {
-	top: 15px;
-	left: 15px;
-	right: 15px;
-	bottom: 15px;
-	box-shadow: 0 3px 3px 0 rgba(61, 175, 255, 1);
-	animation: spin 1.5s linear infinite
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  box-shadow: 0 3px 3px 0 rgba(61, 175, 255, 1);
+  animation: spin 1.5s linear infinite
 }</style>
 <div id="nb-global-spinner" class="spinner">
-	<div class="blob blob-0"></div>
-	<div class="blob blob-1"></div>
-	<div class="blob blob-2"></div>
-	<div class="blob blob-3"></div>
-	<div class="blob blob-4"></div>
-	<div class="blob blob-5"></div>
+  <div class="blob blob-0"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+  <div class="blob blob-5"></div>
 </div>
 
 </body>

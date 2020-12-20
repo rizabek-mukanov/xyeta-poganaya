@@ -21,6 +21,7 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
     asd: any = {
         isOpen: true,
     };
+  totalCount: number = 0;
 
     constructor(public dialogRef: MatDialogRef<MaterialClassifierDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: any,
@@ -118,7 +119,8 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
             element.isSelected = false;
         });
         event.isSelected = true;
-        this.rasdels = [];
+      this.totalCount = event.mcCount;
+      this.rasdels = [];
         this.podrasdels = [];
         this.gruppas = [];
         this.podgruppas = [];
@@ -132,7 +134,8 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
             element.isSelected = false;
         });
         event.isSelected = true;
-        this.podrasdels = [];
+      this.totalCount = event.mcCount;
+      this.podrasdels = [];
         this.gruppas = [];
         this.podgruppas = [];
         this.chosenMaterial = null;
@@ -144,7 +147,8 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
             element.isSelected = false;
         });
         event.isSelected = true;
-        this.gruppas = [];
+      this.totalCount = event.mcCount;
+      this.gruppas = [];
         this.podgruppas = [];
         this.chosenMaterial = null;
         this.getAllSubOtdels(event.mcCode, 3);
@@ -155,7 +159,8 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
             element.isSelected = false;
         });
         event.isSelected = true;
-        this.podgruppas = [];
+      this.totalCount = event.mcCount;
+      this.podgruppas = [];
         this.chosenMaterial = null;
         this.getAllSubOtdels(event.mcCode, 4);
 
@@ -166,7 +171,8 @@ export class MaterialClassifierDialogComponent implements OnInit, OnDestroy {
             element.isSelected = false;
         });
         event.isSelected = true;
-        console.log(event);
+      this.totalCount = event.mcCount;
+      console.log(event);
         this.chosenMaterial = event;
     }
 
