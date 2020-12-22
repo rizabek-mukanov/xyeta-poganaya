@@ -55,8 +55,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //   .pipe(takeUntil(this.destroy$))
     //   .subscribe((users: any) => this.user = users.nick);
     this.user = {};
+    console.log(environment )
     this.user.name = localStorage.getItem(environment.userName);
-
     const {xl} = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
       .pipe(
@@ -98,4 +98,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate(['auth/logout']);
     // this.router.navigate()
   }
+
+  backHome(){
+    window.location.href = '#';
+
+  }
+
 }

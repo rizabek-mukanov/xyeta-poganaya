@@ -31,7 +31,8 @@ export class AuthService {
 
   authorize = (perf) => {
     this.authorized.next(true);
-    localStorage.setItem(environment.apiToken, perf.access_token);
+    console.log(perf)
+  localStorage.setItem(environment.apiToken, perf.access_token);
     localStorage.setItem(environment.userName, perf.userName);
     this.toastService.success('Успешно авторизован!');
     this.router.navigate(['admin']);

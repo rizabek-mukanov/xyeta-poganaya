@@ -1,16 +1,19 @@
-@import '../../styles/themes';
-@import '~bootstrap/scss/mixins/breakpoints';
-@import '~@nebular/theme/styles/global/breakpoints';
+@import "../../styles/themes";
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "~@nebular/theme/styles/global/breakpoints";
 
 @include nb-install-component() {
   .menu-sidebar ::ng-deep .scrollable {
     padding-top: nb-theme(layout-padding-top);
+  }
+  .layout {
+    background-color: tomato !important;
   }
 }
 
 nb-layout-header {
   background-color: #000000 !important;
 }
-//.stroymart-header {
-//  background-color: #07080A !important;
-//}
+.stroymart-header {
+  background-color: #07080a !important;
+}

@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {NbDialogService} from '@nebular/theme';
 import {MatDialog} from '@angular/material/dialog';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {ThemePalette} from '@angular/material/core';
+
 import {AdditionalInfoMatDialogComponent} from './dialog/additional-info-mat-dialog/additional-info-mat-dialog.component';
 import {ActivatedRoute} from '@angular/router';
 import {PublicationsService} from '../../@core/services/publications.service';
@@ -13,6 +16,8 @@ import {ReportService} from '../../@core/services/report.service';
   styleUrls: ['./counter-parties.component.scss'],
 })
 export class CounterPartiesComponent implements OnInit {
+  color: ThemePalette = 'primary';
+  checked: false;
   dataSource: any;
   displayedColumns: string[] = ['image', 'createdAt', 'sendAt', 'status', 'receivers', 'autoSend', 'sendBtn'];
   fileUrl = 'assets/pdf.jpeg';
@@ -20,6 +25,7 @@ export class CounterPartiesComponent implements OnInit {
   report: any;
   constructor(private dialogService: NbDialogService,
               public matDialog: MatDialog,
+              public matSlideToggle:MatSlideToggleModule,
               private activateRoute: ActivatedRoute,
               private publicationsService: PublicationsService,
               private reportService: ReportService) {
@@ -71,7 +77,7 @@ export class CounterPartiesComponent implements OnInit {
     const dialogRef = this.matDialog.open(AdditionalInfoMatDialogComponent, {
       data: this.id,
       panelClass: 'additional-info-modal',
-      width: '80vw',
+      width: '100vw',
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);

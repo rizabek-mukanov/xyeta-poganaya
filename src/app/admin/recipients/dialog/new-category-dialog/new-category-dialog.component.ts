@@ -95,6 +95,7 @@ export class NewCategoryDialogComponent implements OnInit {
         panelClass: 'additional-info-modal',
         data: {element: response, type: 'new'},
         width: '70vw',
+        maxWidth:"100vw"
       });
       addInfoDialog.afterClosed().subscribe(result => {
         if (typeof result === 'object') {

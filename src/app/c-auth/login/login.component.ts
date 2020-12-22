@@ -24,11 +24,9 @@ export class LoginComponent extends NbLoginComponent {
     this.errors = [];
     this.authService.login(this.user.email, this.user.password).toPromise()
       .then(response => {
-        console.log(response);
         this.authService.authorize(response);
         this.loading = false;
       }).catch(error => {
-      console.log(error);
       this.errors.push(error);
       this.authService.authFail();
       this.loading = false;

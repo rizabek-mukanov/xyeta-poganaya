@@ -25,6 +25,7 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { AngularSplitModule } from 'angular-split';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { AngularSplitModule } from 'angular-split';
         NbTooltipModule,
         NbListModule,
         AngularSplitModule,
+        MatSlideToggleModule
     ],
   exports: [
     PdfViewComponent,

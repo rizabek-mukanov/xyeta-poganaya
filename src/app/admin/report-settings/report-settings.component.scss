@@ -1,6 +1,5 @@
-
 div {
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
 }
@@ -11,13 +10,14 @@ div {
   width: 700px;
 }
 nb-card.main-card {
-  height: 85vh;
+  background-color: #191c26;
+  height: 100vh;
+  width: 100vw;
 }
 .chose-time-card {
   width: 200px;
 }
 .small-pdf-page {
-
 }
 .page-col-class {
   //padding: 10px;
@@ -32,12 +32,6 @@ span.page-number {
   top: 28%;
   right: 4%;
 }
-
-
-
-
-
-
 
 .wrapper {
   //background-color: #fff;
@@ -68,12 +62,59 @@ span.page-number {
   flex: 0 0 auto;
 }
 
-
 .handler::before {
-  content: '';
+  content: "";
   display: block;
   width: 10px;
   height: 100%;
   background: #242731;
   margin: 0 auto;
+}
+.report-setup-header {
+  color: #767676;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  .header-button-container {
+    align-self: center;
+    background-color: #242632 !important;
+  }
+
+  .report-setup-button {
+    background-color: #242632;
+    color: #fff;
+    border: none;
+    &:hover {
+      background-color: #242632;
+      color: #fff;
+    }
+  }
+  .report-setup-timer {
+    text-align: center;
+    color: #fff;
+    div {
+      font-weight: normal;
+      color: #2179db;
+    }
+    button {
+      font-weight: normal;
+      color: #2179db;
+      font-size: 23px;
+      background-color: #272a38;
+      border: none;
+      border-radius: 2px !important;
+    }
+  }
+}
+.week-day-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 20px;
+  button {
+    margin-left: 10px;
+  }
+  .no-hover:hover {
+    all: unset !important;
+  }
 }

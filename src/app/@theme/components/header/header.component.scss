@@ -1,6 +1,6 @@
-@import '~bootstrap/scss/mixins/breakpoints';
-@import '~@nebular/theme/styles/global/breakpoints';
-@import '../../styles/themes';
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "~@nebular/theme/styles/global/breakpoints";
+@import "../../styles/themes";
 
 @include nb-install-component() {
   display: flex;
@@ -11,6 +11,19 @@
     display: flex;
     align-items: center;
     width: calc(#{nb-theme(sidebar-width)} - #{nb-theme(header-padding)});
+  }
+
+  .header-name-container {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    nb-icon {
+      color: #9a9b9c !important;
+      margin-right: 1px;
+    }
+    p {
+      color: #60afef;
+    }
   }
 
   nb-action {
@@ -24,19 +37,19 @@
   }
 
   ::ng-deep nb-search button {
-    padding: 0!important;
+    padding: 0 !important;
   }
   .svg-logout {
     cursor: pointer;
     width: 23px;
   }
   nb-icon {
-       color: #6BCCF9 !important;
-       cursor: pointer;
-       width: 30px;
-       height: 25px;
-       margin-right: 30px;
-     }
+    color: #6bccf9 !important;
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    margin-right: 30px;
+  }
   .header-container {
     display: flex;
     align-items: center;
@@ -55,8 +68,8 @@
     .logo {
       padding: 0 1.25rem;
       font-size: 1.75rem;
-      @include nb-ltr(border-left, 1px solid nb-theme(divider-color));
-      @include nb-rtl(border-right, 1px solid nb-theme(divider-color));
+      // @include nb-ltr(border-left, 1px solid nb-theme(divider-color));
+      // @include nb-rtl(border-right, 1px solid nb-theme(divider-color));
       white-space: nowrap;
       text-decoration: none;
     }

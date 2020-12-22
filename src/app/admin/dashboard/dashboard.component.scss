@@ -1,14 +1,24 @@
 table {
   width: 100%;
-  //background-color: #222b45;
-  background: #222b45;
 
   & td {
     color: #ffffff;
   }
 
   & th {
+    width: 150px;
     color: #ffffff;
+    &:nth-child(2) {
+      width: 40%;
+    }
+  }
+  tr,
+  th,
+  td {
+    width: 150px;
+    &:nth-child(2) {
+      width: 300px;
+    }
   }
 }
 
@@ -16,11 +26,6 @@ table {
   width: 100%;
   max-width: 65px;
   padding: 15px;
-}
-
-
-.report-row {
-
 }
 
 .report-row:hover {
@@ -49,3 +54,6 @@ table {
 //    }
 //  }
 //}
+.layout-container {
+  background-color: #191c26;
+}

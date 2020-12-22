@@ -16,7 +16,7 @@ export const routes: Routes = [
     loadChildren: () => import('./c-auth/c-auth.module')
       .then(m => m.CAuthModule),
   },
-
+  
   { path: '', redirectTo: 'admin', pathMatch: 'full' },
   { path: '**', redirectTo: 'admin' },
 ];

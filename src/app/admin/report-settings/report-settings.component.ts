@@ -6,13 +6,14 @@ import { MaterialClassifierDialogComponent } from './dialog/material-classifier-
 import { ReportService } from '../../@core/services/report.service';
 import { interval } from 'rxjs';
 import { environment } from '../../../environments/environment';
-
+import {ThemePalette} from '@angular/material/core';
 @Component({
     selector: 'ngx-report-settings',
     templateUrl: './report-settings.component.html',
     styleUrls: ['./report-settings.component.scss'],
 })
 export class ReportSettingsComponent implements OnInit {
+    color: ThemePalette = 'primary';
     id: number;
     report: any;
     reportHours: any;
@@ -155,8 +156,9 @@ export class ReportSettingsComponent implements OnInit {
             data: report,
             panelClass: 'additional-info-modal',
             backdropClass: 'material-classifier-dialog-class',
-            height: '90vh',
-            width: '90vw',
+            height: '100vh',
+            width: '100vw',
+            maxWidth:'100vw'
         });
         dialogRef.afterClosed().subscribe(result => {
             console.log(result);
